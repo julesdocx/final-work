@@ -24,10 +24,13 @@ const authenticateUser = async ({
   try {
     const userDocument = db.collection('users').doc(username);
     const doc = await userDocument.get();
+    const user = doc.data();
+    console.log(user)
     if (!doc.exists) {
-
-    } else {
-
+      return null
+    } else if(user.password == password) {
+      console.log(user)
+      return user
     }
   } catch (err) {
     return null
