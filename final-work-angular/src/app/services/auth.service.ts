@@ -35,10 +35,16 @@ export class AuthService {
             const newdecodedToken: any = jwt_decode(res.token)
             console.log(newdecodedToken)
             localStorage.setItem('currentUser', JSON.stringify({token: res.token, email: newdecodedToken.email}));
-            console.log(newdecodedToken.roles)
             // this.currentUserSubject.next({token: res.token, email: newdecodedToken.email});
             this.accessToken = res.token
             return res;
         }));
-}
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.isAuthenticated$ = false
+    //this.currentUserSubject.next(null);
+    //this.router.navigate(['/login']);
+  }
 }

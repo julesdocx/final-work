@@ -16,8 +16,7 @@ router.post('/login', function (req, res, next) {
       if (err) {
         res.send(err);
       }
-      const roles =  user.roles.map(x=>x.name.toLowerCase())
-      const jwtPayload = { sub: user.id, email: user.email, admin: roles.includes('admin'), roles: roles }
+      const jwtPayload = { sub: user.id, email: user.email }
       const token = jwt.sign(jwtPayload, process.env.JWT_SECRET);
       return res.json({ token });
     });

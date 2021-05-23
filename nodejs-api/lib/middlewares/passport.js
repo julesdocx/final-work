@@ -30,7 +30,6 @@ passport.use(new JWTStrategy({
   function (jwtPayload, cb) {
     return userService.getById(jwtPayload.sub)
       .then(user => {
-        user.roles = user.roles.map(x=>x.name.toLowerCase())
         return cb(null, user);
       })
       .catch(err => {
