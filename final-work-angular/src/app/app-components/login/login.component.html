@@ -1,8 +1,9 @@
 <div>
     <div>
+        <h3>Log in</h3>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <label for="username-input">Email</label>
-            <input formControlName="username" type="text" placeholder="example@mail.com" name="username-input">
+            <input formControlName="username" type="email" placeholder="example@mail.com" name="username-input">
             <label for="password-input">Password</label>
             <input formControlName="password" type="text" placeholder="m**password*isn***my*m*ma'$*name" name="username-input">
             <button type="submit">SUBMIT</button>

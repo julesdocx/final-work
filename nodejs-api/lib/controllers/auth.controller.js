@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const userService = require('../services/user.service');
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', { session: false }, (err, user, info) => {
@@ -21,6 +22,10 @@ router.post('/login', function (req, res, next) {
       return res.json({ token });
     });
   })(req, res);
+});
+
+router.post('/register', (req, res) => {
+  userService.postUser(req, res);
 });
 
 module.exports = router;

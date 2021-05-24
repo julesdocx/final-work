@@ -61,6 +61,26 @@ const getAll = async (req, res) => {
 
 // POST
 const postUser = async (req, res) => {
+  const user = req.body.user
+  try {
+    const userDocument = db.collection('users').doc(user.email);
+    const doc = await userDocument.get();
+    console.log(user, 'user log')
+    if (doc.exists) {
+      res.status(403).send(`user with email ${user.email}, already exists`)
+    } else {
+      userDocument.set({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        password: user.password,
+      }, { merge: true });
+      res.status(200).send('successful registration');
+    }
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 
 }
 

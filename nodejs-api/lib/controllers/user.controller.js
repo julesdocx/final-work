@@ -7,15 +7,11 @@ router.get('', checkRoles('admin'), (req, res) => {
   userService.getAll(req, res);
 });
 
-router.post('/register', checkRoles('admin'), (req, res) => {
-  userService.postUser(req, res);
-});
-
-router.delete('/delete/:id', checkRoles('admin'), (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   userService.deleteUser(req, res);
 });
 
-router.post('/update', checkRoles('admin'), (req, res) => {
+router.post('/update', (req, res) => {
   console.log(req.body.user);
   userService.updateUser(req, res);
 });
