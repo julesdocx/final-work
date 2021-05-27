@@ -21,4 +21,8 @@ export class UsersService {
             console.log('authentication error', error);
         });
   }
+
+  getByEmail(id: string) {
+    return this.http.get(`${environment.apiUrl}/api/user/${id}`);
+  }
 }

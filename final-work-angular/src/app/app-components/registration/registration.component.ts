@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
 
 
   onSubmit() {
-    if(this.isAddMode) {
+    if(this.isAddMode) {  
       this.usersService.register({
         email: this.form.value.email,
         firstname: this.form.value.firstname,

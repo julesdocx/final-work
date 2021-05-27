@@ -7,6 +7,11 @@ router.get('', checkRoles('admin'), (req, res) => {
   userService.getAll(req, res);
 });
 
+router.get('/user/:id', (req, res) => {
+  console.log(req.params.email)
+  userService.getUserByEmail(req, res);
+});
+
 router.delete('/delete/:id', (req, res) => {
   userService.deleteUser(req, res);
 });

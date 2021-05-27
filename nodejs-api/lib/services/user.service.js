@@ -5,26 +5,25 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 const db = firebase.firestoreDb
 
-const postTestUser = async () => {
-  const userDocument = db.collection('users');
-  await userCollection.add({
-    'firstname': 'Louis',
-    'lastname': 'Van Langendonck',
-    'email': 'lvl.14@gmail.com',
-    'password': 'Test123.'
-  });
-}
+// const postTestUser = async () => {
+//   const userDocument = db.collection('users');
+//   await userCollection.add({
+//     'firstname': 'Louis',
+//     'lastname': 'Van Langendonck',
+//     'email': 'lvl.14@gmail.com',
+//     'password': 'Test123.'
+//   });
+// }
 
 
-// GET byEmail
 const authenticateUser = async ({
   username,
   password
 }) => {
   try {
-    const userDocument = db.collection('users').doc(username);
+    const userDocument = db.collection('users').where('email', '==', username);
     const doc = await userDocument.get();
-    const user = doc.data();
+    const user = doc[0].data();
     console.log(user, 'user log')
     if (!doc.exists) {
       return null
@@ -37,13 +36,17 @@ const authenticateUser = async ({
   }
 }
 
-const getById = async ( userId ) => {
-
+const getUserByEmail = async (req, res) => {
+  console.log('user:id', req.params.email);
   try {
-
+    const userDocument = db.collection('users').doc(email);
+    const doc = await userDocument.get();
+    const user = doc.data();
+    console.log(user, 'user log')
+    res.status(200).send(user)
   } catch (err) {
     console.log(err);
-    return null
+    res.send(err)
   }
 }
 
@@ -97,9 +100,8 @@ const updateUser = async (req, res) => {
 module.exports = {
   getAll,
   authenticateUser,
+  getUserByEmail,
   postUser,
   deleteUser,
   updateUser,
-  // getRoles,
-  getById,
 }
