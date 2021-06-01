@@ -2,6 +2,7 @@
 <h3>{{user.firstname}} {{user.lastname}}</h3>
 <p>Email: {{user.email}}</p>
 <h4>My library:</h4>
-<p *ngFor="let book of user.storyReferences">
-    {{book}}
-</p>
+<div *ngFor="let story of storyList">
+    <h5>{{story.title}}</h5>
+    <p>{{story.author}}</p>
+</div>

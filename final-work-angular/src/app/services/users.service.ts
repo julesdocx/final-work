@@ -22,7 +22,7 @@ export class UsersService {
         });
   }
 
-  getByEmail(id: string) {
+  getById(id: string) {
     console.log(id)
     return this.http.get(`${environment.apiUrl}/api/users/user/${id}`);
   }
