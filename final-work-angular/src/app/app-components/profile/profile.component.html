@@ -1,1 +1,7 @@
-<p>profile works!</p>
+<h1>Profile</h1>
+<h3>{{user.firstname}} {{user.lastname}}</h3>
+<p>Email: {{user.email}}</p>
+<h4>My library:</h4>
+<p *ngFor="let book of user.storyReferences">
+    {{book}}
+</p>

@@ -16,7 +16,11 @@
                 "${workspaceFolder}/**/*.js",
                 "${workspaceFolder}/**/*",
             ],
-            "envFile": "${workspaceFolder}\\nodejs-api\\.env"
+            "envFile": "${workspaceFolder}\\nodejs-api\\.env",
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/**",
+                "!**/node_modules/**"
+              ],
         }
     ]
 }

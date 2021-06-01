@@ -13,7 +13,6 @@ passport.use(new LocalStrategy({
   function (username, password, done) {
     return userService.authenticateUser({ username, password })
       .then(user => {
-        console.log(user)
         if (!user) {
           return done(null, false, { message: 'Incorrect user or password.' });
         }
@@ -28,7 +27,7 @@ passport.use(new JWTStrategy({
   secretOrKey: process.env.JWT_SECRET
 },
   function (jwtPayload, cb) {
-    return userService.getById(jwtPayload.sub)
+    return userService.getUserById(jwtPayload.id)
       .then(user => {
         return cb(null, user);
       })

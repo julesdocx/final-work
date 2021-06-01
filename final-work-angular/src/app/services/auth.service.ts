@@ -12,10 +12,11 @@ import jwt_decode from "jwt-decode";
 export class AuthService {
   private accessToken;
   public isAuthenticated$: boolean;
+  public userId : string = '';
 
   constructor(private router: Router, private http: HttpClient) {
     const localStorageData: any = localStorage.getItem('currentUser')
-    if(localStorageData){
+    if(localStorageData) {
       this.isAuthenticated$ = true;
       this.accessToken = localStorageData.token;
     } else {
@@ -34,6 +35,7 @@ export class AuthService {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             const newdecodedToken: any = jwt_decode(res.token)
             console.log(newdecodedToken)
+            this.userId = newdecodedToken.id;
             localStorage.setItem('currentUser', JSON.stringify({token: res.token, email: newdecodedToken.email}));
             // this.currentUserSubject.next({token: res.token, email: newdecodedToken.email});
             this.accessToken = res.token

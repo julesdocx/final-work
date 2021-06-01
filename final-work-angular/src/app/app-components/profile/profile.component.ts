@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,13 +9,15 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
   user: any;
+  loading: boolean = true;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    console.log(this.usersService.getByEmail('jules.docx@student.ehb.be').subscribe((val: any)=> {
+    this.usersService.getByEmail(this.authService.userId).subscribe((val: any)=> {
       console.log(val);
       this.user = val;
-    }));
+
+    });
   }
 }

@@ -21,32 +21,35 @@ const authenticateUser = async ({
   password
 }) => {
   try {
-    const userDocument = db.collection('users').where('email', '==', username);
-    const doc = await userDocument.get();
-    const user = doc[0].data();
-    console.log(user, 'user log')
-    if (!doc.exists) {
-      return null
-    } else if(user.password == password) {
-      console.log(user)
-      return user
+    let returnValue = null;
+    const userDocumentRef = db.collection('users')
+    const snapshot = await userDocumentRef.where('email', '==', username).get()
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return returnValue;
     }
+    snapshot.forEach(doc => {
+      const user = doc.data();
+      if (user.password == password){
+        returnValue = {user: user, id: doc.id};
+      }
+    });
+    return returnValue;
   } catch (err) {
+    console.log(err);
     return null
   }
 }
 
-const getUserByEmail = async (req, res) => {
-  console.log('user:id', req.params.email);
+const getUserById = async (id) => {
   try {
-    const userDocument = db.collection('users').doc(email);
+    const userDocument = db.collection('users').doc(id);
     const doc = await userDocument.get();
     const user = doc.data();
-    console.log(user, 'user log')
-    res.status(200).send(user)
+    return {firstname: user.firstname, lastname: user.lastname, email: user.email, storyReferences: user.storyReferences}
   } catch (err) {
     console.log(err);
-    res.send(err)
+    return null
   }
 }
 
@@ -100,7 +103,7 @@ const updateUser = async (req, res) => {
 module.exports = {
   getAll,
   authenticateUser,
-  getUserByEmail,
+  getUserById,
   postUser,
   deleteUser,
   updateUser,
