@@ -17,8 +17,11 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) {
     const localStorageData: any = localStorage.getItem('currentUser')
     if(localStorageData) {
+      const data = JSON.parse(localStorageData)
+      this.userId = data.id;
+      console.log(data)
       this.isAuthenticated$ = true;
-      this.accessToken = localStorageData.token;
+      this.accessToken = data.token;
     } else {
       this.isAuthenticated$ = false;
       this.accessToken = null
@@ -33,12 +36,12 @@ export class AuthService {
     return this.http.post<{token: string}>(`${environment.apiUrl}/auth/login`, { username, password })
         .pipe(map(res => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            const newdecodedToken: any = jwt_decode(res.token)
-            console.log(newdecodedToken)
+            const newdecodedToken: any = jwt_decode(res.token);
+            this.isAuthenticated$ = true;
             this.userId = newdecodedToken.id;
-            localStorage.setItem('currentUser', JSON.stringify({token: res.token, email: newdecodedToken.email}));
+            localStorage.setItem('currentUser', JSON.stringify({token: res.token, id: newdecodedToken.id}));
             // this.currentUserSubject.next({token: res.token, email: newdecodedToken.email});
-            this.accessToken = res.token
+            this.accessToken = res.token;
             return res;
         }));
   }

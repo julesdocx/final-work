@@ -1,8 +1,15 @@
-<h1>Profile</h1>
-<h3>{{user.firstname}} {{user.lastname}}</h3>
-<p>Email: {{user.email}}</p>
-<h4>My library:</h4>
-<div *ngFor="let story of storyList">
-    <h5>{{story.title}}</h5>
-    <p>{{story.author}}</p>
+<div class="page-container">
+    <div>
+        <div>
+            <h1>Profile</h1>
+            <h3>{{user.value.firstname}} {{user.value.lastname}}</h3>
+            <p>Email: {{user.value.email}}</p>
+            <h4>My library:</h4>
+        </div>
+        <div *ngFor="let story of storyList">
+            <h1>{{story.title}}</h1>
+            <p>{{story.author}}</p>
+                <h3>Chapters: {{story.chapterTitles.length}}</h3>
+        </div>
+    </div>
 </div>

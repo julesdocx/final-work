@@ -1,7 +1,6 @@
-<app-login></app-login>
-<app-registration></app-registration>
+<button (click)="logout()">LOGOUT</button>
+<button (click)="upload()">UPLOAD</button>
 <!-- <app-profile></app-profile> -->
-<button [routerLink]="['/profile']" routerLinkActive="router-link-active" >PROFILE</button>
 <div>
     <router-outlet></router-outlet>
 </div>

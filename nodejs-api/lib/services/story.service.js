@@ -9,7 +9,6 @@ const getStoriesByIds = async (storyIds) => {
             const story = await getStoryById(id);
             storyObjArray.push(story)
         };
-        console.log(storyObjArray);
         return storyObjArray
     } catch (err) {
         console.log(err);
