@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { MustMatch } from 'src/app/validators/must-match.validator';
 
@@ -13,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   isAddMode: boolean = true;
 
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router : Router) {
     this.form = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -53,5 +54,6 @@ export class RegistrationComponent implements OnInit {
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
     });
+    this.router.navigate(['/login'])
   }
 }

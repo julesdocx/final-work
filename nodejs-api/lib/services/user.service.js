@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 const firebase = require('../../firebase')
 var bcrypt = require('bcrypt');
 
-const saltRounds = 10;
+const saltRounds = 11;
 const db = firebase.firestoreDb
 
 // const postTestUser = async () => {
@@ -14,7 +14,6 @@ const db = firebase.firestoreDb
 //     'password': 'Test123.'
 //   });
 // }
-
 
 const authenticateUser = async ({
   username,
@@ -28,8 +27,9 @@ const authenticateUser = async ({
       console.log('No matching documents.');
       return returnValue;
     }
-    snapshot.forEach(doc => {
+    snapshot.forEach(async doc => {
       const user = doc.data();
+      const match = await bcrypt.compare(password, user.password);
       if (user.password == password){
         returnValue = {user: user, id: doc.id};
       }
@@ -69,17 +69,18 @@ const getAll = async (req, res) => {
 const postUser = async (req, res) => {
   const user = req.body.user
   try {
-    const userDocument = db.collection('users').doc(user.email);
-    const doc = await userDocument.get();
+    const userDocumentRef = db.collection('users')
+    const snapshot = await userDocumentRef.where('email', '==', user.email).get()
+    const cryptedPassword = await bcrypt.hash(user.password, saltRounds)
     console.log(user, 'user log')
-    if (doc.exists) {
+    if (!snapshot.empty) {
       res.status(403).send(`user with email ${user.email}, already exists`)
     } else {
-      userDocument.set({
+      userDocumentRef.add({
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
-        password: user.password,
+        password: cryptedPassword,
       }, { merge: true });
       res.status(200).send('successful registration');
     }

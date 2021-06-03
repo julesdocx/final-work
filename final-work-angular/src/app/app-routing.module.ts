@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/profile',  pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, canActivate : [AuthGuard], pathMatch: 'full'},
   { path: 'login', component : LoginComponent },
-  { path: 'register', component : RegistrationComponent,  canActivate : [AuthGuard] },
+  { path: 'sign-up', component : RegistrationComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
