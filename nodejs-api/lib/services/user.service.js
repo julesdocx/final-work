@@ -20,21 +20,22 @@ const authenticateUser = async ({
   password
 }) => {
   try {
-    let returnValue = null;
     const userDocumentRef = db.collection('users')
     const snapshot = await userDocumentRef.where('email', '==', username).get()
     if (snapshot.empty) {
       console.log('No matching documents.');
-      return returnValue;
+      return null;
     }
-    snapshot.forEach(async doc => {
-      const user = doc.data();
+    let snapshotDoc;
+      snapshot.forEach(doc => {
+        snapshotDoc = doc;
+      })
+      const user = snapshotDoc.data();
       const match = await bcrypt.compare(password, user.password);
-      if (user.password == password){
-        returnValue = {user: user, id: doc.id};
+      console.log(match, password, user.password)
+      if (match){
+        return {user: user, id: snapshotDoc.id};
       }
-    });
-    return returnValue;
   } catch (err) {
     console.log(err);
     return null

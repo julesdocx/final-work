@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       this.usersService.getById(userId).subscribe((val: any)=> {
         console.log(val);
         this.user = new BehaviorSubject(val)
-        if (val.storyReferences.length > 0) {
+        if (val.storyReferences) {
           this.storiesService.getStoriesByIds(val.storyReferences).subscribe((list: any) => {
             this.storyList = list;
             console.log(list);

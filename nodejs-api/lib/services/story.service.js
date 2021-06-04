@@ -23,7 +23,7 @@ const getStoryById = async (id) => {
         const story = doc.data();
         return story;
     } catch (err) {
-
+        console.log(err)
     }
 }
 

@@ -1,10 +1,10 @@
-<div class="page-container">
+<div>
     <div>
         <div>
             <h1>Profile</h1>
             <h3>{{user.value.firstname}} {{user.value.lastname}}</h3>
             <p>Email: {{user.value.email}}</p>
-            <h4>My library:</h4>
+            <h4 *ngIf="storyList.length > 0">My library:</h4>
         </div>
         <div *ngFor="let story of storyList">
             <h1>{{story.title}}</h1>

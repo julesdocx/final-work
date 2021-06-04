@@ -1,6 +1,35 @@
-<button (click)="logout()">LOGOUT</button>
-<button (click)="upload()">UPLOAD</button>
-<!-- <app-profile></app-profile> -->
-<div>
-    <router-outlet></router-outlet>
+<div class="page-container">
+    <div class="nav-bar">
+        <h4 style="background-color: bisque;">AUWER</h4>
+        <div>
+            <button (click)="upload()">Upload</button>
+            <button (click)="logout()">Logout</button>
+        </div>
+    </div><!-- <app-profile></app-profile> -->
+    <div class="page-router-container">
+        <!-- <router-outlet></router-outlet> -->
+        <h1>Strepen</h1>
+        <p>Seelis Van der Auweraert</p>
+        <hr>
+        <div  [class.show]="">
+            <b>I. Een gestreepte dag</b>
+            <p></p>
+        </div>
+        <div  [class.show]="">
+            <b>II. Uitstapje naar de hemel</b>
+            <p></p>
+        </div>
+        <div  [class.show]="">
+            <b>III. De Messias</b>
+            <p></p>
+        </div>
+        <div  [class.show]="">
+            <b>IV. Vangst</b>
+            <p></p>
+        </div>
+        <div  [class.show]="">
+            <b>V. Hang!</b>
+            <p></p>
+        </div>
+    </div>
 </div>
