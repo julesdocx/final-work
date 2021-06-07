@@ -1,0 +1,17 @@
+.chapter {
+    p {
+        display: none;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    a {
+        cursor: pointer;
+    }
+}
+
+.show-paragraph {
+    p {
+        display: block;
+    }
+}

@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h3>Upload</h3>
+            <label for="title-input">Title</label>
+            <input formControlName="title" type="text" placeholder="Write your title" name="title-input">
+            <div *ngFor="let chapterNumber of chapterCount; let i = index">
+                <label for="chapterTitle-input">ChapterTitle</label>
+                <input [formControlName]="i" type="text" placeholder="chapterTitle" name="chapterTitle-input">
+                <label for="chapterText-input">chapterText</label>
+                <input formControlName="chapterText" type="text" placeholder="example@mail.com" name="chapterText-input">
+            </div>
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+</div>

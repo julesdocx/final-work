@@ -20,4 +20,8 @@ export class AppComponent {
   upload() {
     
   }
+
+  getUsername() {
+    return 'Jules Docx';
+  }
 }

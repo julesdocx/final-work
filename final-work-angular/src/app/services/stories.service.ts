@@ -20,4 +20,8 @@ export class StoriesService {
     })
     return this.http.get(`${environment.apiUrl}/api/stories/list/${idString}`);
   }
+
+  postStory(story: any) {
+    
+  }
 }

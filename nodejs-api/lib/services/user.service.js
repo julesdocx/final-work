@@ -33,7 +33,7 @@ const authenticateUser = async ({
       const user = snapshotDoc.data();
       const match = await bcrypt.compare(password, user.password);
       console.log(match, password, user.password)
-      if (match){
+      if (match) {
         return {user: user, id: snapshotDoc.id};
       }
   } catch (err) {

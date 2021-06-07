@@ -1,17 +1,17 @@
 <div>
     <div>
-        <h3>Sign up</h3>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h3>Sign up</h3>
             <label for="firstname-input">Firstname</label>
-            <input formControlName="firstname" type="text" placeholder="example@mail.com" name="firstname-input">
+            <input formControlName="firstname" type="text" placeholder="firstname" name="firstname-input">
             <label for="lastname-input">Lastname</label>
-            <input formControlName="lastname" type="text" placeholder="example@mail.com" name="lastname-input">
+            <input formControlName="lastname" type="text" placeholder="lastname" name="lastname-input">
             <label for="username-input">Email</label>
             <input formControlName="email" type="email" placeholder="example@mail.com" name="username-input">
             <label for="password-input">Password</label>
-            <input formControlName="password" type="text" placeholder="m**password*isn***my*m*ma'$*name" name="password-input">
+            <input formControlName="password" type="password" placeholder="m**password*isn***my*m*ma'$*name" name="password-input">
             <label for="repeat-password-input">Repeat password</label>
-            <input formControlName="repeatPassword" type="text" placeholder="m**password*isn***my*m*ma'$*name" name="repeat-password-input">
+            <input formControlName="repeatPassword" type="password" placeholder="m**password*isn***my*m*ma'$*name" name="repeat-password-input">
             <button type="submit">SUBMIT</button>
         </form>
     </div>
