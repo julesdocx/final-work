@@ -13,29 +13,33 @@ export class UploadComponent implements OnInit {
   constructor( private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required, Validators.email],
-      chapters: new FormArray([])
+      chapterTitles: new FormArray([]),
+      chapterContents: new FormArray([])
     });
+  }
+
+  ngOnInit() {
+    this.addChapters();
   }
 
   get f() {
     return this.form.controls;
   }
 
-  get rolesFormArray() {
-    return this.form.controls.chapters as FormArray;
+  get titlesFormArray() {
+    return this.form.controls.chapterTitles as FormArray;
   }
 
-  ngOnInit(): void {
-
+  get contentsFormArray() {
+    return this.form.controls.chapterContents as FormArray;
   }
 
   onSubmit() {
 
   }
 
-  addCheckboxes() {
-    this.chapterCount.forEach(() => this.rolesFormArray.push(new FormControl()));
+  addChapters() {
+    this.chapterCount.forEach(() => this.titlesFormArray.push(new FormControl()));
+    this.chapterCount.forEach(() => this.contentsFormArray.push(new FormControl()));
   }
-
-
 }
