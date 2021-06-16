@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&display=swap');
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    //background-color:#FAF3EA;
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+}
+
+p {
+    font-family:'Times New Roman', Times, serif;
+}
+b {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.primary-button{
+    
+}
+

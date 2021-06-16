@@ -1,7 +1,8 @@
 <div class="page-container">
     <div class="nav-bar">
-        <h4 style="background-color: bisque;">AUWER</h4>
+        <h4 [routerLink]="['/']" style="cursor: pointer; background-color: #FAF3EA;border: solid black 0.5px; letter-spacing: 0.16em; padding: 5px;">Қlees</h4>
         <a [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{getUsername()}}</a>
+        <button class="primary-button">menu</button>
         <div>
             <button [routerLink]="['/upload']" routerLinkActive="router-link-active" >Upload</button>
             <button (click)="logout()">Logout</button>

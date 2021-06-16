@@ -4,12 +4,18 @@
             <h3>Upload</h3>
             <label for="title-input">Title</label>
             <input formControlName="title" type="text" placeholder="Write your title" name="title-input">
-            <div *ngFor="let chapterTitles of titlesFormArray.controls; let i = index">
-                <label for="chapterTitle-input">ChapterTitle</label>
-                <input [formControlName]="i" type="text" placeholder="chapterTitle" name="chapterTitle-input">
-                <!-- <label for="chapterText-input">chapterText</label>
-                <input [formControlName]="i" type="text" placeholder="example@mail.com" name="chapterText-input"> -->
+            <div *ngFor="let chapter of chapterCount; let i = index">
+                <div formArrayName="chapterTitles" >
+                    <label [for]="'title' + i">ChapterTitle</label>
+                    {{i}}
+                    <input [formControlName]="i" type="text" placeholder="chapterTitle" [name]="'title' + i">
+                </div>
+                <div formArrayName="chapterContents">
+                    <label [for]="'chapter' + i">ChapterText</label>
+                    <input [formControlName]="i" type="text" placeholder="text" [name]="'chapter' + i">
+                </div>
             </div>
+            <button (click)="addChapter()">ADD CHAPTER</button>
             <button type="submit">SUBMIT</button>
         </form>
     </div>

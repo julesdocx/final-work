@@ -11,6 +11,7 @@ import { RegistrationComponent } from './app-components/registration/registratio
 import { ProfileComponent } from './app-components/profile/profile.component';
 import { UploadComponent } from './app-components/upload/upload.component';
 import { StoryComponent } from './app-components/story/story.component';
+import { HomeComponent } from './app-components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StoryComponent } from './app-components/story/story.component';
     RegistrationComponent,
     ProfileComponent,
     UploadComponent,
-    StoryComponent
+    StoryComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

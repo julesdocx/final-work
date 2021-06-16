@@ -8,38 +8,42 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class UploadComponent implements OnInit {
   form: FormGroup;
-  chapterCount: number[] = [1];
+  chapterCount: number[] = [0]
 
   constructor( private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required, Validators.email],
-      chapterTitles: new FormArray([]),
-      chapterContents: new FormArray([])
+      chapterTitles: this.formBuilder.array([]),
+      chapterContents: this.formBuilder.array([]),
     });
+    this.chapterTitles.push(new FormControl(''));
+    this.chapterContents.push(new FormControl(''));
   }
 
   ngOnInit() {
-    this.addChapters();
   }
 
-  get f() {
-    return this.form.controls;
+  get chapterTitles() {
+    return this.form.get('chapterTitles') as FormArray;
   }
 
-  get titlesFormArray() {
-    return this.form.controls.chapterTitles as FormArray;
+  get chapterContents() {
+    return this.form.get('chapterContents') as FormArray;
   }
 
-  get contentsFormArray() {
-    return this.form.controls.chapterContents as FormArray;
+  addChapter() {
+    this.chapterCount.push(this.chapterCount.length)
+    this.chapterTitles.push(new FormControl());
+    this.chapterContents.push(new FormControl());
+  }
+
+  removeChapter() {
+    this.chapterTitles.removeAt(this.chapterTitles.length - 1);
+    this.chapterContents.removeAt(this.chapterContents.length - 1);
   }
 
   onSubmit() {
-
+    console.log(this.form.value.chapterContents)
   }
 
-  addChapters() {
-    this.chapterCount.forEach(() => this.titlesFormArray.push(new FormControl()));
-    this.chapterCount.forEach(() => this.contentsFormArray.push(new FormControl()));
-  }
 }

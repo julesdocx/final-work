@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './app-components/home/home.component';
 import { LoginComponent } from './app-components/login/login.component';
 import { ProfileComponent } from './app-components/profile/profile.component';
 import { RegistrationComponent } from './app-components/registration/registration.component';
@@ -8,7 +9,8 @@ import { UploadComponent } from './app-components/upload/upload.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/story',  pathMatch: 'full' },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'home',  component: HomeComponent, redirectTo: '', pathMatch: 'full' },
   { path: 'profile', component: RegistrationComponent, canActivate : [AuthGuard], pathMatch: 'full'},
   { path: 'login', component : LoginComponent },
   { path: 'story', component : StoryComponent },
