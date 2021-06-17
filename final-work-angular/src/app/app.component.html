@@ -1,13 +1,19 @@
 <div class="page-container">
     <div class="nav-bar">
-        <h4 [routerLink]="['/']" style="cursor: pointer; background-color: #FAF3EA;border: solid black 0.5px; letter-spacing: 0.16em; padding: 5px;">Қlees</h4>
-        <a [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{getUsername()}}</a>
-        <button class="primary-button">menu</button>
-        <div>
-            <button [routerLink]="['/upload']" routerLinkActive="router-link-active" >Upload</button>
-            <button (click)="logout()">Logout</button>
+        <div class="navbar-left">
+            <h4 [routerLink]="['/']" style="cursor: pointer; background-color: #FAF3EA;border: solid black 0.5px; letter-spacing: 0.16em; padding: 5px;">Қlees</h4>
+        </div>
+        <div class="navbar-section">
+            <a [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{getUsername()}}</a>
+        </div>
+        <div class="navbar-right">
+            <button class="primary-button">Menu</button>
         </div>
     </div> <!-- <app-profile></app-profile> -->
+    <div>
+        <button [routerLink]="['/upload']" routerLinkActive="router-link-active" >Upload</button>
+        <button (click)="logout()">Logout</button>
+    </div>
     <div class="page-router-container">
         <router-outlet></router-outlet>
     </div>

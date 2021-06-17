@@ -19,7 +19,16 @@ b {
     font-size: 14px;
 }
 
-.primary-button{
-    
+.primary-button {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    background: none;
+    border: solid black 0.5px;
+    padding: 0px 16px;
 }
 
+.primary-button:hover {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 100
+}
