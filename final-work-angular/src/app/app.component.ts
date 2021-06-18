@@ -9,8 +9,13 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'Auwer-app';
+  isLoggedIn = false;
+  menuToggle = false;
 
-  constructor (private authService : AuthService, private router: Router) { }
+  constructor (private authService : AuthService, private router: Router) {
+    this.isLoggedIn = this.authService.isAuthenticated$
+    console.log(this.isLoggedIn)
+  }
 
   logout() {
     this.authService.logout()

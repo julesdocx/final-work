@@ -4,6 +4,8 @@
     display: none;
 }
 
+$primary-color: #FAF3EA;
+
 body {
     //background-color:#FAF3EA;
     -ms-overflow-style: none;
@@ -13,11 +15,14 @@ body {
 p {
     font-family:'Times New Roman', Times, serif;
 }
+
 b {
     font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
     font-size: 14px;
 }
+
+//****** PRIMARY BUTTON ******//
 
 .primary-button {
     font-family: 'Times New Roman', Times, serif;
@@ -25,10 +30,47 @@ b {
     background: none;
     border: solid black 0.5px;
     padding: 0px 16px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 }
 
 .primary-button:hover {
     font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-weight: 100
+    text-decoration: underline;
+    background: $primary-color;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    //font-weight: 100;
+}
+
+//****** SECONDARY BUTTON ******//
+
+.secondary-button {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    background: none;
+    border: none;
+    padding: 0px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+    text-decoration: underline;
+}
+
+.secondary-button:hover {
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: normal;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+    //font-weight: 100;
+}
+
+//****** DISABLED BUTTON ******//
+
+.disabled {
+    color: #5b5b5b;
+    letter-spacing: normal;
+    text-decoration: line-through;
+}
+
+//****** CANCEL BUTTON ******//
+
+.cancel-button {
+    width: 1em;
 }
