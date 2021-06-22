@@ -1,15 +1,16 @@
 <div>
     <div>
         <div>
-            <h1>Profile</h1>
-            <h3>{{user.value.firstname}} {{user.value.lastname}}</h3>
-            <p>Email: {{user.value.email}}</p>
-            <h4 *ngIf="storyList.length > 0">My library:</h4>
+            <!-- <h3>{{user.value.firstname}} {{user.value.lastname}}</h3> -->
+            <h3>seelis Van der Auweraert</h3>
+            <!-- <p>Email: {{user.value.email}}</p> -->
+            <!-- <h4 *ngIf="storyList.length > 0">My library:</h4>
         </div>
         <div *ngFor="let story of storyList">
             <h1>{{story.title}}</h1>
             <p>{{story.author}}</p>
                 <h3>Chapters: {{story.chapterTitles.length}}</h3>
-        </div>
+        </div> -->
+        <button [routerLink]="['/strepen']" routerLinkActive="router-link-active"  class="secondary-button">Strepen</button>
     </div>
 </div>

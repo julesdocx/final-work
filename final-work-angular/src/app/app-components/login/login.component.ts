@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   form : FormGroup;
   error = "";
 
+  @Output() outputValue = new EventEmitter<boolean>();
+
   constructor(
     private formBuilder: FormBuilder,
     private authService : AuthService,
@@ -21,6 +23,13 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  close(event: MouseEvent) {
+      console.log('clickout');
+      this.outputValue.emit(false);
+      event.stopPropagation()
+
   }
 
   ngOnInit(): void {

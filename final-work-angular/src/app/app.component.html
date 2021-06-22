@@ -5,7 +5,7 @@
         </div>
         <div class="navbar-item nav-center-item">
             <button *ngIf="isLoggedIn" class="secondary-button" [routerLink]="['/profile']" routerLinkActive="router-link-active" >{{getUsername()}}</button>
-            <button *ngIf="!isLoggedIn" class="secondary-button" [routerLink]="['/login']" routerLinkActive="router-link-active" >Log in</button>
+            <button *ngIf="!isLoggedIn" class="secondary-button" [routerLink]="['/login']" >Log in</button>
         </div>
         <div class="navbar-item nav-right-item">
             <button *ngIf="!isLoggedIn" (click)="menuToggle = !menuToggle" [routerLink]="['/sign-up']" class="primary-button">Sign up</button>
@@ -48,8 +48,7 @@
 </g>
 <g>
 </g>
-</svg>
-
+            </svg>
         </div>
     </div>
     <div *ngIf="menuToggle && isLoggedIn" class="nav-menu">
@@ -64,6 +63,7 @@
         </div>
     </div>
     <div class="page-router-container">
+        <!-- <app-login (outputValue)="loginFormUpdate($event)" *ngIf="loginPageRequest"></app-login> -->
         <router-outlet></router-outlet>
     </div>
 </div>

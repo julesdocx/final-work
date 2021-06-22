@@ -1,25 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;600&display=swap');
 ::-webkit-scrollbar {
     display: none;
 }
 
 $primary-color: #FAF3EA;
+$secondary-color: #FFFFFF;
 
 body {
     //background-color:#FAF3EA;
     -ms-overflow-style: none;
     scrollbar-width: none; /* Firefox */
-}
-
-p {
-    font-family:'Times New Roman', Times, serif;
-}
-
-b {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
-    font-size: 14px;
 }
 
 //****** PRIMARY BUTTON ******//
@@ -38,7 +29,11 @@ b {
     text-decoration: underline;
     background: $primary-color;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-    //font-weight: 100;
+}
+
+.primary-button-container {
+    display: grid;
+    place-items: center end;
 }
 
 //****** SECONDARY BUTTON ******//
@@ -61,6 +56,11 @@ b {
     //font-weight: 100;
 }
 
+.secondary-button-container {
+    display: grid;
+    place-items: center;
+}
+
 //****** DISABLED BUTTON ******//
 
 .disabled {
@@ -73,4 +73,101 @@ b {
 
 .cancel-button {
     width: 1em;
+}
+
+//****** TYPOGRAPHIE ******//
+
+h1, h2, h3, h6, b, sub, caption {
+    font-family: 'Times New Roman', Times, serif;
+}
+h4, h5, p, small {
+    font-family: 'Hind', sans-serif;
+}
+h1 {
+    font-size: 96px;
+    font-weight: 100;
+}
+h2 {
+    font-size: 60px;
+    font-weight: 100;
+}
+h3 {
+    font-size: 32px;
+    font-weight: 100;
+}
+h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+h5 {
+    font-size: 14px;
+    font-weight: 200;
+}
+h6, b {
+    font-weight: 600;
+    font-size: 14px;
+}
+sub {
+    font-size: 14px;
+    font-weight: 100;
+    font-style: italic;
+}
+p {
+    font-size: 14px;
+    font-weight: 200;
+}
+small {
+    font-size: 12px;
+    font-weight: 200;
+}
+caption {
+    font-size: 10px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+//****** INPUT TYPOGRAPHY ******//
+
+.inputField::-webkit-input-placeholder {
+    font-family: 'Hind', Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+  
+.inputField:-ms-input-placeholder {
+    font-family: 'Hind', Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+  
+.inputField:-moz-placeholder {
+    font-family: 'Hind', Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+  
+.inputField::-moz-placeholder {
+    font-family: 'Hind', Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+//****** FORM COMPONENTS ******//
+.form-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0, 0, 0, 50%);
+}
+
+form {
+    background-color: $secondary-color;
+    padding: 32px 16px;
+    border: black 0.5px solid;
+
+    h3 {
+        margin-top: 0px;
+    }
 }

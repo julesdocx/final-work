@@ -12,6 +12,7 @@ import { ProfileComponent } from './app-components/profile/profile.component';
 import { UploadComponent } from './app-components/upload/upload.component';
 import { StoryComponent } from './app-components/story/story.component';
 import { HomeComponent } from './app-components/home/home.component';
+import { ClickOutDirective } from './directives/click-out.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './app-components/home/home.component';
     UploadComponent,
     StoryComponent,
     HomeComponent,
+    ClickOutDirective,
   ],
   imports: [
     BrowserModule,

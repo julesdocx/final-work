@@ -11,10 +11,16 @@ export class AppComponent {
   title = 'Auwer-app';
   isLoggedIn = false;
   menuToggle = false;
+  loginPageRequest = false;
 
   constructor (private authService : AuthService, private router: Router) {
     this.isLoggedIn = this.authService.isAuthenticated$
     console.log(this.isLoggedIn)
+  }
+
+  loginFormUpdate(state: boolean) {
+    console.log(state);
+    this.loginPageRequest = state
   }
 
   logout() {
