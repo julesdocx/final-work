@@ -4,6 +4,9 @@
     display: none;
 }
 
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+
 $primary-color: #FAF3EA;
 $secondary-color: #FFFFFF;
 
@@ -170,4 +173,10 @@ form {
     h3 {
         margin-top: 0px;
     }
+}
+
+//****** TEXT EDITOR *******//
+
+.quill-editor {
+    min-height: 120px;
 }

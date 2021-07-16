@@ -1,22 +1,17 @@
 <div>
     <div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <h3>Upload</h3>
-            <label for="title-input">Title</label>
-            <input formControlName="title" type="text" placeholder="Write your title" name="title-input">
-            <div *ngFor="let chapter of chapterCount; let i = index">
-                <div formArrayName="chapterTitles" >
-                    <label [for]="'title' + i">ChapterTitle</label>
-                    {{i}}
-                    <input [formControlName]="i" type="text" placeholder="chapterTitle" [name]="'title' + i">
-                </div>
-                <div formArrayName="chapterContents">
-                    <label [for]="'chapter' + i">ChapterText</label>
-                    <input [formControlName]="i" type="text" placeholder="text" [name]="'chapter' + i">
-                </div>
-            </div>
-            <button (click)="addChapter()">ADD CHAPTER</button>
-            <button type="submit">SUBMIT</button>
+        <br>
+        <form [formGroup]="textEditorForm">
+            <input type="text" formControlName="title">
+            <app-text-editor [control]="textControls">
+            </app-text-editor>
         </form>
+    </div>
+    <div>
+        {{ textEditorForm.value | json}}
+    </div>
+    <div>
+        <p>{{textEditorForm.value.title}}</p>
+        <div [innerHTML]="textEditorForm.value.text"></div>
     </div>
 </div>

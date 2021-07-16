@@ -7,43 +7,30 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  form: FormGroup;
-  chapterCount: number[] = [0]
+  textEditorForm: FormGroup;
 
-  constructor( private formBuilder: FormBuilder,) {
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required, Validators.email],
-      chapterTitles: this.formBuilder.array([]),
-      chapterContents: this.formBuilder.array([]),
+  constructor(private formBuilder: FormBuilder) {
+    this.textEditorForm = this.formBuilder.group({
+      title: [
+        ''
+      ],
+      text: [
+        `<h2><u>This is </u>a <span style=\"color: rgb(240, 102, 102);\">RICH</span> <strong>text editor</strong> <em>for</em> - <a href=\"http://jira.trungk18.com/\" rel=\"noopener noreferrer\" target=\"_blank\">http://jira.trungk18.com/</a></h2><h3><span style=\"color: rgb(153, 51, 255);\">I hope you </span><strong style=\"color: rgb(153, 51, 255);\">like it!</strong></h3>`
+      ]
     });
-    this.chapterTitles.push(new FormControl(''));
-    this.chapterContents.push(new FormControl(''));
   }
 
   ngOnInit() {
   }
 
-  get chapterTitles() {
-    return this.form.get('chapterTitles') as FormArray;
+
+  get textControls() {
+    return this.textEditorForm.controls.text as FormControl;
   }
 
-  get chapterContents() {
-    return this.form.get('chapterContents') as FormArray;
+  stringify(value: string) {
+    var parser = new DOMParser();
+    var element = parser.parseFromString(value, "text/html")
+    return element;
   }
-
-  addChapter() {
-    this.chapterCount.push(this.chapterCount.length)
-    this.chapterTitles.push(new FormControl());
-    this.chapterContents.push(new FormControl());
-  }
-
-  removeChapter() {
-    this.chapterTitles.removeAt(this.chapterTitles.length - 1);
-    this.chapterContents.removeAt(this.chapterContents.length - 1);
-  }
-
-  onSubmit() {
-    console.log(this.form.value.chapterContents)
-  }
-
 }

@@ -9,12 +9,12 @@ import { UploadComponent } from './app-components/upload/upload.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: UploadComponent, pathMatch: 'full' },
   { path: 'home',  component: HomeComponent, redirectTo: '', pathMatch: 'full' },
   { path: 'seelisVanderAuweraert', component: ProfileComponent, canActivate : [AuthGuard], pathMatch: 'full'},
   { path: 'login', component : LoginComponent },
   { path: 'strepen', component : StoryComponent },
-  { path: 'upload', component : UploadComponent, canActivate : [AuthGuard], pathMatch: 'full' },
+  { path: 'upload', component : UploadComponent },
   { path: 'sign-up', component : RegistrationComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
