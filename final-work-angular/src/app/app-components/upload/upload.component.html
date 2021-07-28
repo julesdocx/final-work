@@ -1,17 +1,28 @@
-<div>
-    <div>
-        <br>
+<div class="content-page-container">
+    <div></div>
+    <div class="upload-container">
         <form [formGroup]="textEditorForm">
-            <input type="text" formControlName="title">
-            <app-text-editor [control]="textControls">
+            <div class="input-title-container" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <input id="title" name="title" class="input-title" type="text" formControlName="title"> 
+                    <label class="secondary-button-label no-select" for="title">
+                        Edit
+                    </label>
+                </div>
+                <button [class.toggled]="preview" style="float: right" (click)="preview = !preview" class="secondary-button no-select">Preview</button>
+            </div>
+            <app-text-editor *ngIf="preview == false" [control]="textControls">
             </app-text-editor>
         </form>
+        <div  *ngIf="preview == true" class="preview-container">
+            <!-- <div>
+                {{ textEditorForm.value | json}}
+            </div> -->
+            <div>
+                <h5>{{textEditorForm.value.title}}</h5>
+                <div [innerHTML]="textEditorForm.value.text"></div>
+            </div>
+        </div>
     </div>
-    <div>
-        {{ textEditorForm.value | json}}
-    </div>
-    <div>
-        <p>{{textEditorForm.value.title}}</p>
-        <div [innerHTML]="textEditorForm.value.text"></div>
-    </div>
+    <div></div>
 </div>

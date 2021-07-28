@@ -12,25 +12,32 @@ $secondary-color: #FFFFFF;
 
 body {
     //background-color:#FAF3EA;
+    margin: 0px;
     -ms-overflow-style: none;
     scrollbar-width: none; /* Firefox */
+}
+
+.content-page-container {
+    display: grid;
+    grid-template-columns: minmax(0, 100%) 500px minmax(0, 100%);
 }
 
 //****** PRIMARY BUTTON ******//
 
 .primary-button {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
+    font-size: 14px;
+    font-family: 'neue-haas-grotesk-display', Times, serif;
+    font-weight: 700;
     background: none;
-    border: solid black 0.5px;
+    border: none;
     padding: 0px 16px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 }
 
 .primary-button:hover {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'neue-haas-grotesk-display', Times, serif;
     text-decoration: underline;
-    background: $primary-color;
+   // background: $primary-color;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 }
 
@@ -41,27 +48,31 @@ body {
 
 //****** SECONDARY BUTTON ******//
 
-.secondary-button {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+.secondary-button, .secondary-button-label {
+    font-size: 14px;
+    font-family: 'neue-haas-grotesk-display', Times, serif;
+    font-weight: 500;
     background: none;
     border: none;
     padding: 0px;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
-.secondary-button:hover {
-    font-family: 'Times New Roman', Times, serif;
-    letter-spacing: normal;
+.secondary-button:hover, .secondary-button-label:hover {
+    font-family: 'neue-haas-grotesk-display', Times, serif;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
+    text-decoration: underline;
     //font-weight: 100;
 }
 
 .secondary-button-container {
     display: grid;
     place-items: center;
+}
+
+.toggled {
+    background-color: rgb(0, 0, 0, 30%);
 }
 
 //****** DISABLED BUTTON ******//
@@ -80,14 +91,17 @@ body {
 
 //****** TYPOGRAPHIE ******//
 
-h1, h2, h3, h6, b, sub, caption {
-    font-family: 'Times New Roman', Times, serif;
+h1, h2, h3, h6, h4, h5, b, sub {
+    font-family: 'PT Serif', serif;
 }
-h4, h5, p, small {
-    font-family: 'Hind', sans-serif;
+caption, button {
+    font-family: 'neue-haas-grotesk-display';
+}
+p, small {
+    font-family: 'PT Serif', serif;
 }
 h1 {
-    font-size: 96px;
+    font-size: 72px;
     font-weight: 100;
 }
 h2 {
@@ -103,8 +117,9 @@ h4 {
     font-weight: 600;
 }
 h5 {
-    font-size: 14px;
-    font-weight: 200;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
 }
 h6, b {
     font-weight: 600;
@@ -131,26 +146,30 @@ caption {
 
 //****** INPUT TYPOGRAPHY ******//
 
+input {
+    font-family: 'PT Serif', serif;
+}
+
 .inputField::-webkit-input-placeholder {
-    font-family: 'Hind', Helvetica, sans-serif;
+    font-family: 'PT Serif', serif;
     font-size: 12px;
     font-weight: 100;
 }
   
 .inputField:-ms-input-placeholder {
-    font-family: 'Hind', Helvetica, sans-serif;
+    font-family: 'PT Serif', serif;
     font-size: 12px;
     font-weight: 100;
 }
   
 .inputField:-moz-placeholder {
-    font-family: 'Hind', Helvetica, sans-serif;
+    font-family: 'PT Serif', serif;
     font-size: 12px;
     font-weight: 100;
 }
   
 .inputField::-moz-placeholder {
-    font-family: 'Hind', Helvetica, sans-serif;
+    font-family: 'PT Serif', serif;
     font-size: 12px;
     font-weight: 100;
 }
@@ -167,8 +186,6 @@ caption {
 
 form {
     background-color: $secondary-color;
-    padding: 32px 16px;
-    border: black 0.5px solid;
 
     h3 {
         margin-top: 0px;
@@ -180,3 +197,41 @@ form {
 .quill-editor {
     min-height: 120px;
 }
+
+/* Set dropdown font-families */
+
+[quill-editor-toolbar] .ql-font span[data-label="PT serif"]::before {
+    font-family: "PT serif";
+  }
+  
+  [quill-editor-toolbar] .ql-font span[data-label="Neue Haas Grotesk"]::before {
+    font-family: "neue-haas-grotesk-display";
+  }
+  
+  [quill-editor-toolbar] .ql-font span[data-label="Pt Sans"]::before {
+    font-family: "PT sans";
+  }
+
+  .ql-font-PT-Serif {
+    font-family: "PT Serif";
+  }
+  
+  .ql-font-neue-haas-grotesk-display {
+    font-family: "neue-haas-grotesk-display";
+  }
+  
+  .ql-font-PT-Sans {
+    font-family: "PT Sans";
+  }
+  
+  //************NO SELECT************//
+
+  .no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
