@@ -1,16 +1,8 @@
-.page-container {
-    display: grid;
-    font-family: Arial, Helvetica, sans-serif;
-    grid-template-columns:  minmax(0px, 100%) 655px minmax(0px, 100%);
-    grid-template-rows:  1fr;
-}
-
 .nav-bar {
     display: grid;
     width: 100%;
     grid-template-columns:  80px 1fr 160px;
     padding: 8px 0px;
-    border-bottom: black solid 0.5px;
 
     h4{
         margin: 0px;

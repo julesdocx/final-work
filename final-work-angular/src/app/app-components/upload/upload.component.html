@@ -1,28 +1,45 @@
-<div class="content-page-container">
-    <div></div>
-    <div class="upload-container">
-        <form [formGroup]="textEditorForm">
-            <div class="input-title-container" style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <input id="title" name="title" class="input-title" type="text" formControlName="title"> 
-                    <label class="secondary-button-label no-select" for="title">
-                        Edit
-                    </label>
-                </div>
-                <button [class.toggled]="preview" style="float: right" (click)="preview = !preview" class="secondary-button no-select">Preview</button>
-            </div>
-            <app-text-editor *ngIf="preview == false" [control]="textControls">
-            </app-text-editor>
-        </form>
-        <div  *ngIf="preview == true" class="preview-container">
-            <!-- <div>
-                {{ textEditorForm.value | json}}
-            </div> -->
+<div class="page-container">
+    <div class="content-container">
+        <div></div>
+        <form>
+            <h5 style="margin: 16px 0px 8px 0px;">Meta-data</h5>
             <div>
-                <h5>{{textEditorForm.value.title}}</h5>
-                <div [innerHTML]="textEditorForm.value.text"></div>
+                <input class="input-field-small" placeholder="Story Title..." id="story-title-input" name="story-title-input" type="text" >
+                <label class="secondary-button-label no-select" for="story-title-input">Edit</label>
+            </div>
+            <div>
+                <textarea class="input-field-small" rows="5" placeholder="Description..." id="description-input" name="description-input" type="text"></textarea>
+                <label class="secondary-button-label no-select" for="description-input">Edit</label>
+            </div>
+        </form>
+        <div></div>
+    </div>
+    <div class="content-container">
+        <div></div>
+        <div>
+            <form [formGroup]="textEditorForm">
+                <div class="input-title-container" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <input id="chapter-title" name="chapter-title" class="input-field" type="text" formControlName="title"> 
+                        <label class="secondary-button-label no-select" for="chapter-title">
+                            Edit
+                        </label>
+                    </div>
+                    <button [class.toggled]="preview" style="float: right" (click)="preview = !preview" class="secondary-button no-select">Preview</button>
+                </div>
+                <app-text-editor *ngIf="preview == false" [control]="textControls">
+                </app-text-editor>
+            </form>
+            <div  *ngIf="preview == true" class="preview-container">
+                <!-- <div>
+                    {{ textEditorForm.value | json}}
+                </div> -->
+                <div>
+                    <h5>{{textEditorForm.value.title}}</h5>
+                    <div [innerHTML]="textEditorForm.value.text"></div>
+                </div>
             </div>
         </div>
+        <div></div>
     </div>
-    <div></div>
 </div>

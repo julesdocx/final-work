@@ -17,9 +17,24 @@ body {
     scrollbar-width: none; /* Firefox */
 }
 
-.content-page-container {
+//******** GRID BASELINE *******//
+
+.page-container {
+    display: flexbox;
+    //grid-template-columns:  minmax(0px, 100%) 655px minmax(0px, 100%);
+    grid-auto-rows: 36px;
+}
+
+.content-container {
     display: grid;
-    grid-template-columns: minmax(0, 100%) 500px minmax(0, 100%);
+    grid-template-columns: minmax(0, 100%) 450px minmax(0, 100%);
+    border-bottom: black solid 1px;
+}
+
+.nav-content-container {
+    display: grid;
+    grid-template-columns: minmax(0, 100%) 450px minmax(0, 100%);
+    border-bottom: black solid 1px;
 }
 
 //****** PRIMARY BUTTON ******//
@@ -43,7 +58,7 @@ body {
 
 .primary-button-container {
     display: grid;
-    place-items: center end;
+    place-items: center;
 }
 
 //****** SECONDARY BUTTON ******//
@@ -144,10 +159,34 @@ caption {
     font-style: italic;
 }
 
-//****** INPUT TYPOGRAPHY ******//
+//****** INPUT UI STYLING ******//
 
 input {
     font-family: 'PT Serif', serif;
+}
+
+.input-field {
+    border: none;
+    border-bottom: black solid 1px;
+    width: 50%;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    margin-right: 8px;
+}
+
+.input-field-small {
+    border: none;
+    border-bottom: black solid 1px;
+    width: 50%;
+    // font-size: 14px;
+    font-style: italic;
+    margin-right: 8px;
+}
+
+textarea {
+    font-family: 'PT Serif', serif;
+    font-size: 12px;
 }
 
 .inputField::-webkit-input-placeholder {
