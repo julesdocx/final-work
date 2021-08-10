@@ -1,17 +1,17 @@
 <div class="page-container">
-        <div class="nav-content-container">
+        <div class="header-content-container top-header">
             <div>
             </div>
-            <div class="nav-bar">
-                <div class="navbar-item nav-left-item">
-                    <button class="primary-button" [routerLink]="['/']">De<span style="font-family: PT Serif; font-style: italic; font-weight: 400;">Paulus</span>Dienst</button>
+            <div class="header-container">
+                <div class="headerbar-item header-left-item">
+                    <button class="primary-button" [routerLink]="['/']">De<span style="font-family: PT Serif; font-style: italic; font-weight: 400;">Paulus1</span>Dienst</button>
                     <button *ngIf="!menuToggle" (click)="menuToggle = !menuToggle" class="secondary-button">Index</button>
                 </div>
-                <div class="navbar-item nav-center-item">
+                <div class="headerbar-item header-center-item">
                 </div>
-                <div class="navbar-item nav-right-item">
-                    <button *ngIf="!isLoggedIn" class="secondary-button" [routerLink]="['/login']" >Log in</button>
-                    <button *ngIf="!isLoggedIn" (click)="menuToggle = !menuToggle" [routerLink]="['/sign-up']" class="primary-button">Sign up</button>
+                <div class="headerbar-item header-right-item">
+                    <button *ngIf="!isLoggedIn" [routerLink]="['/login']" class="primary-button">Log in</button>
+                    <button *ngIf="!isLoggedIn" (click)="menuToggle = !menuToggle" [routerLink]="['/sign-up']" class="secondary-button">Sign up</button>
                     <svg *ngIf="menuToggle && isLoggedIn" (click)="menuToggle = !menuToggle" class="cancel-button" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               viewBox="0 0 123.05 123.05" style="enable-background:new 0 0 123.05 123.05;"
              xml:space="preserve">
@@ -68,9 +68,7 @@
                 <button class="secondary-button disabled" disabled>Search</button>
             </div>
         </div> -->
-        <div class="page-router-container">
             <!-- <app-login (outputValue)="loginFormUpdate($event)" *ngIf="loginPageRequest"></app-login> -->
-            <router-outlet></router-outlet>
-        </div>
+            <router-outlet height="100%"></router-outlet>
     <div></div>
 </div>

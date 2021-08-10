@@ -1,15 +1,15 @@
-<div class="page-container">
+<div class="">
     <div class="content-container">
         <div></div>
         <form>
-            <h5 style="margin: 16px 0px 8px 0px;">Meta-data</h5>
+            <h6 style="margin: 16px 0px 8px 0px;">Heading</h6>
             <div>
                 <input class="input-field-small" placeholder="Story Title..." id="story-title-input" name="story-title-input" type="text" >
-                <label class="secondary-button-label no-select" for="story-title-input">Edit</label>
+                <!-- <label class="secondary-button-label no-select" for="story-title-input">Edit</label> -->
             </div>
             <div>
-                <textarea class="input-field-small" rows="5" placeholder="Description..." id="description-input" name="description-input" type="text"></textarea>
-                <label class="secondary-button-label no-select" for="description-input">Edit</label>
+                <textarea height="40px" class="input-field-small" rows="5" placeholder="Description..." id="description-input" name="description-input" type="text"></textarea>
+                <!-- <label class="secondary-button-label no-select" for="description-input">Edit</label> -->
             </div>
         </form>
         <div></div>
@@ -17,10 +17,11 @@
     <div class="content-container">
         <div></div>
         <div>
+            <h6 style="margin: 16px 0px 8px 0px;">Chapter I</h6>
             <form [formGroup]="textEditorForm">
                 <div class="input-title-container" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <input id="chapter-title" name="chapter-title" class="input-field" type="text" formControlName="title"> 
+                        <input id="chapter-title"  placeholder="Chapter Title..." name="chapter-title" class="input-field" type="text" formControlName="title"> 
                         <label class="secondary-button-label no-select" for="chapter-title">
                             Edit
                         </label>
@@ -41,5 +42,14 @@
             </div>
         </div>
         <div></div>
+    </div>
+    <div class="header-content-container bottom-header">
+        <div>
+        </div>
+        <div class="header-container">
+            <button class="primary-button">Add chapter</button>
+        </div>
+        <div>
+        </div>
     </div>
 </div>

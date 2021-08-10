@@ -1,10 +1,10 @@
 require('dotenv').config();
 const googleConfig = require('../googleAppCredentials.json')
 const {Storage} = require('@google-cloud/storage');
-const projectId = googleConfig.project_id;
-const storage = new Storage({projectId, googleConfig});
+//const projectId = googleConfig.project_id;
+//const storage = new Storage({projectId, googleConfig});
 
-listBuckets();
+//listBuckets();
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -14,18 +14,18 @@ const http = require('http');
 const apiRoutes = require('./lib/routes/api');
 const authRoutes = require('./lib/routes/auth');
 
-// Makes an authenticated API request.
-async function listBuckets() {
-  try {
-    const [buckets] = await storage.getBuckets();
-    console.log('Buckets:');
-    buckets.forEach(bucket => {
-      console.log(bucket.name);
-    });
-  } catch (err) {
-    console.error('ERROR:', err);
-  }
-}
+// // Makes an authenticated API request.
+// async function listBuckets() {
+//   try {
+//     const [buckets] = await storage.getBuckets();
+//     console.log('Buckets:');
+//     buckets.forEach(bucket => {
+//       console.log(bucket.name);
+//     });
+//   } catch (err) {
+//     console.error('ERROR:', err);
+//   }
+// }
 
 const app = express();
 
