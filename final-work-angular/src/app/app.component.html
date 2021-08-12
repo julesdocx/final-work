@@ -1,11 +1,11 @@
 <div class="page-container">
-        <div class="header-content-container top-header">
+        <div class="header-content-container top-header" style="position: sticky;">
             <div>
             </div>
             <div class="header-container">
                 <div class="headerbar-item header-left-item">
                     <button class="primary-button" [routerLink]="['/']">De<span style="font-family: PT Serif; font-style: italic; font-weight: 400;">Paulus1</span>Dienst</button>
-                    <button *ngIf="!menuToggle" (click)="menuToggle = !menuToggle" class="secondary-button">Index</button>
+                    <!-- <button *ngIf="!menuToggle" (click)="menuToggle = !menuToggle" class="secondary-button">Index</button> -->
                 </div>
                 <div class="headerbar-item header-center-item">
                 </div>
@@ -69,6 +69,7 @@
             </div>
         </div> -->
             <!-- <app-login (outputValue)="loginFormUpdate($event)" *ngIf="loginPageRequest"></app-login> -->
-            <router-outlet height="100%"></router-outlet>
-    <div></div>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
 </div>

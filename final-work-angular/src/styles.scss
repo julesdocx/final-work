@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;600&display=swap');
 ::-webkit-scrollbar {
     display: none;
 }
@@ -7,7 +6,7 @@
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
 
-$primary-color: #FAF3EA;
+$primary-color: #FAF3EF;
 $secondary-color: #FFFFFF;
 
 body {
@@ -20,16 +19,17 @@ body {
 //******** GRID BASELINE *******//
 
 .page-container {
-    display: flexbox;
+    display: grid;
     //grid-template-columns:  minmax(0px, 100%) 655px minmax(0px, 100%);
-   // grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 37px 1fr;
     height: 100vh;
+    align-self: stretch;
 }
 
 .routing-container {
     display: grid;
-    //height: 100%;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
     align-content: stretch;    
 }
 
@@ -40,6 +40,16 @@ body {
     //border-bottom: black solid 1px;
 }
 
+.side-container-left {
+    text-align: right;
+    padding: 16px;
+    color: grey;
+}
+
+.middle-content-container {
+    padding: 16px 0px;
+}
+
 //*********** HEADERS ************//
 
 .header-container {
@@ -48,29 +58,53 @@ body {
     grid-template-columns:  80px 1fr 160px;
     padding: 8px 0px;
 }
-
+.headers-content {
+    //display: grid;
+    //grid-auto-rows: 37px;
+    animation: bottom-top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.header-max {
+    max-height: 185px;
+    overflow: scroll;
+}
 .header-left-item, .header-left-item:last-child {
-    grid-template-columns: 160fr 160fr;
-    place-items: center start;
-  //  padding-left: 16px
+    display: grid;
+    justify-content: start;
+    align-items: center;
+    gap: 3px;
 }    
 .header-center-item {
     place-items: center;
 }
 .header-right-item {
-    grid-template-columns: 1fr 1fr;
-    place-items: center end;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: end;
+    align-items: center;
+
+    .primary-button, .secondary-button{
+        margin-left: 6px;
+    }
 }
 // .header-right-item:last-child {
 //     padding-right: 16px;
 // }
 .headerbar-item {
-    display: grid;
+    display: grid
 }
 .header-content-container {
     height: 36px;
     display: grid;
     grid-template-columns: minmax(0, 100%) 450px minmax(0, 100%);
+    h6 {
+        font-style: italic;
+        margin: 0px;
+    }
+}
+.header-content-container:hover {
+    h6 {
+        text-decoration: underline;
+    }
 }
 .top-header {
     border-bottom: black solid 1px;
@@ -79,7 +113,22 @@ body {
 .bottom-header {
     border-top: black solid 1px;
     align-self: end;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
 }
+
+.upper-header {
+    border-bottom: black solid 1px;
+    align-self: start;
+}
+
+.click-header {
+    cursor: pointer;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+}
+.click-header:hover {
+    border-left: black solid 3px;
+}
+
 
 //****** PRIMARY BUTTON ******//
 
@@ -90,6 +139,7 @@ body {
     background: none;
     border: none;
     padding: 0px;
+    cursor: pointer;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 }
 
@@ -108,6 +158,7 @@ body {
 //****** SECONDARY BUTTON ******//
 
 .secondary-button, .secondary-button-label {
+    cursor: pointer;
     font-size: 14px;
     font-family: 'neue-haas-grotesk-display', Times, serif;
     font-weight: 500;
@@ -212,11 +263,10 @@ input {
 .input-field {
     border: none;
     border-bottom: black solid 1px;
-    width: 50%;
+    width: 99%;
     font-size: 24px;
     font-weight: 600;
     font-style: italic;
-    margin-right: 8px;
 }
 
 .input-field-small {
@@ -318,3 +368,21 @@ form {
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
   }
+
+
+//***************COLOR************//
+.primary-color {
+    background-color: $primary-color;
+}
+
+
+//***************ANIMATION************//
+
+@keyframes bottom-top {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 100%
+    }
+}

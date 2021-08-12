@@ -1,55 +1,104 @@
-<div class="">
-    <div class="content-container">
-        <div></div>
-        <form>
-            <h6 style="margin: 16px 0px 8px 0px;">Heading</h6>
-            <div>
-                <input class="input-field-small" placeholder="Story Title..." id="story-title-input" name="story-title-input" type="text" >
-                <!-- <label class="secondary-button-label no-select" for="story-title-input">Edit</label> -->
+<div class="routing-container">
+  <div></div>
+  <form [formGroup]="storyForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="chapters" class="routing-container">
+      <div></div>
+      <div class="routing-container">
+
+        <div #upperHeader class="headers-content header-max">
+          <div *ngIf="editMetaData == true" class="header-content-container upper-header primary-color click-header" (click)="selectedChapter = 1; editMetaData = true;">
+            <div></div>
+            <div class="header-container">
+              <h6>Untitled</h6>
+              <div></div>
+              <div class="headerbar-item header-right-item"><div></div><div></div><button class="secondary-button">Edit</button></div>
             </div>
-            <div>
-                <textarea height="40px" class="input-field-small" rows="5" placeholder="Description..." id="description-input" name="description-input" type="text"></textarea>
-                <!-- <label class="secondary-button-label no-select" for="description-input">Edit</label> -->
-            </div>
-        </form>
-        <div></div>
-    </div>
-    <div class="content-container">
-        <div></div>
-        <div>
-            <h6 style="margin: 16px 0px 8px 0px;">Chapter I</h6>
-            <form [formGroup]="textEditorForm">
-                <div class="input-title-container" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <input id="chapter-title"  placeholder="Chapter Title..." name="chapter-title" class="input-field" type="text" formControlName="title"> 
-                        <label class="secondary-button-label no-select" for="chapter-title">
-                            Edit
-                        </label>
-                    </div>
-                    <button [class.toggled]="preview" style="float: right" (click)="preview = !preview" class="secondary-button no-select">Preview</button>
-                </div>
-                <app-text-editor *ngIf="preview == false" [control]="textControls">
-                </app-text-editor>
-            </form>
-            <div  *ngIf="preview == true" class="preview-container">
-                <!-- <div>
-                    {{ textEditorForm.value | json}}
-                </div> -->
+            <div></div>
+          </div>
+          <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i">
+            <div class="header-content-container upper-header click-header" *ngIf="selectedChapter > i"
+              [class.overflowGrid]="checkOverflow(upperHeader)" (click)="selectedChapter = i; editMetaData = false">
+              <div></div>
+              <div class="header-container">
                 <div>
-                    <h5>{{textEditorForm.value.title}}</h5>
-                    <div [innerHTML]="textEditorForm.value.text"></div>
+                  <h6>{{chapter.value.name}}</h6>
                 </div>
+                <div>
+                </div>
+                <div class="headerbar-item header-right-item">
+                  <!-- <button class="secondary-button">Edit</button> -->
+                </div>
+              </div>
+              <div></div>
             </div>
+          </div>
+        </div>
+
+        <div>
+          <div *ngIf="editMetaData == true">
+             <button style="float: right" (click)="editMetaData = false"
+                  class="secondary-button no-select">Close</button>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" formControlName="title">
+            <label for="description">Description </label>
+            <input type="text" id="description" name="description" formControlName="description">
+            <label for="author">Author </label>
+            <input type="text" id="author" name="author" formControlName="author">
+          </div>
+          <div *ngIf="editMetaData == false">
+            <div *ngFor="let chapter of chapters.controls; let i = index" []="i">
+              <div class="middle-content-container content-container" *ngIf="selectedChapter == i">
+                <div class="side-container-left">
+                  <div>
+                    Strepen
+                    <!-- <label class="secondary-button-label no-select" for="story-title-input">Edit</label> -->
+                  </div>
+                </div>
+                <div>
+                  <input placeholder="Chapter Title..." class="input-field" type="text" style="margin-bottom: 8px;"
+                    formControlName="name">
+                  <div>
+                    <quill-editor [placeholder]="" [modules]="quillConfiguration" class="quill-editor"
+                      formControlName="text">
+                    </quill-editor>
+                  </div>
+                  <!-- <button [class.toggled]="preview" style="float: right" (click)="preview = !preview"
+                  class="secondary-button no-select">Preview</button>
+                <button (click)="removeChapter(i)">Remove</button> -->
+                  <button type="submit">Submit</button> {{this.storyForm.value | json}}
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="headers-content header-max">
+          <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i">
+            <div class="header-content-container bottom-header click-header" *ngIf="selectedChapter < i" (click)="selectedChapter = i; editMetaData = false">
+              <div></div>
+              <div class="header-container">
+                <div>
+                  <h6>{{chapter.value.name}}</h6>
+                </div>
+                <div>
+                </div>
+                <div class="headerbar-item header-right-item">
+                  <!-- <button class="secondary-button">Edit</button> -->
+                </div>
+              </div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-content-container bottom-header">
+        <div></div>
+        <div class="header-container">
+          <button (click)="addChapter(); selectedChapter = selectedChapter + 1" class="primary-button">Add
+            chapter</button>
         </div>
         <div></div>
+      </div>
     </div>
-    <div class="header-content-container bottom-header">
-        <div>
-        </div>
-        <div class="header-container">
-            <button class="primary-button">Add chapter</button>
-        </div>
-        <div>
-        </div>
-    </div>
+  </form>
 </div>
