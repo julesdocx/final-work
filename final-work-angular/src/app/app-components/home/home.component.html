@@ -1,5 +1,34 @@
-<br>
-<br>
-<br>
-<button style="text-align: center; width: 100%;" class="secondary-button" [routerLink]="['/seelisVanderAuweraert']" routerLinkActive="router-link-active" >Seelis Van der Auwereart</button>
-
+<div class="routing-container">
+    <div></div>
+    <div class="headers-content">
+        <div *ngFor="let story of stories">
+            <div (click)="goToStory(story.id)" class="header-content-container upper-header primary-color click-header">
+                <div></div>
+                  <div class="header-container">
+                    <div class="header-left-item">
+                      <h6>{{story.title}}</h6>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="headerbar-item header-right-item">
+                      <p>{{story.author}}</p>
+                    </div>
+                  </div>
+                  <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="header-content-container bottom-header">
+        <div></div>
+        <div class="header-container">
+          <div class="header-left-item">
+          </div>
+          <div>
+          </div>
+          <div class="header-right-item">
+            <button class="primary-button-stroked" [routerLink]="['/upload']" >Write</button>
+          </div>
+        </div>
+        <div></div>
+      </div>
+</div>

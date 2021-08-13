@@ -83,7 +83,7 @@ body {
     align-items: center;
 
     .primary-button, .secondary-button{
-        margin-left: 6px;
+        margin-left: 12px;
     }
 }
 // .header-right-item:last-child {
@@ -260,6 +260,7 @@ sub {
     font-style: italic;
 }
 p {
+    margin: 0px;
     font-size: 14px;
     font-weight: 200;
 }

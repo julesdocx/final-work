@@ -14,4 +14,24 @@ router.get('/list/:idList', (req, res) => {
   });
 });
 
+router.post('/upload', (req, res) => {
+  storyService.uploadStory(req, res);
+});
+
+router.post('/update', (req,res) => {
+  storyService.updateStory(req, res);
+});
+
+router.delete('/delete/:id', (req,res) => {
+  storyService.deleteStory(req, res);
+});
+
+router.get('/getall', (req, res) => {
+  storyService.getStories(req, res);
+});
+
+router.get('/getstory/:id', (req, res) => {
+  storyService.getStoryById(req, res);
+});
+
 module.exports = router;

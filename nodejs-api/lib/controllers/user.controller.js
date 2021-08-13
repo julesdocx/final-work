@@ -27,4 +27,11 @@ router.get('/user/:id', (req, res) => {
 //   userService.updateUser(req, res);
 // });
 
+router.post('/updatestory'), (req, res) => {
+  userService.updateUserStory(req, res);
+}
+
+router.delete('/deletestory/:id'), (req, res) => {
+  userService.deleteUserStory(req, res);
+}
 module.exports = router;

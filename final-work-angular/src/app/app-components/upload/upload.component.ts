@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@an
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { QuillConfiguration } from "./quill-configuration";
 import Quill from 'quill';
+import { StoriesService } from 'src/app/services/stories.service';
 
 const font = Quill.import('formats/font')
 
@@ -26,8 +27,9 @@ export class UploadComponent implements OnInit {
   preview: boolean = false;
   editMetaData: boolean = false;
   chapterCount: number = 0;
+  updateMode: boolean = false
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private storiesService: StoriesService) {
     this.storyForm = this.formBuilder.group({
       title: ['Untitled'],
       description: ['e'],
@@ -69,7 +71,20 @@ export class UploadComponent implements OnInit {
     this.chapters.removeAt(i);
   }
 
-  onSubmit() { 3
+  onSubmit() { 
+    // if(updateMode = true) {
+  
+    // }
+    console.log(this.storyForm.value.title,
+       this.storyForm.value.description,
+       this.storyForm.value.author,
+       this.chapters.value,)
+    this.storiesService.postStory({
+      title: this.storyForm.value.title,
+      description: this.storyForm.value.description,
+      author: this.storyForm.value.author,
+      chapters: this.chapters.value,
+    })
   }
 
   checkOverflow (element: any) {

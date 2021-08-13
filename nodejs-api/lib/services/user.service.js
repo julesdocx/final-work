@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const firebase = require('../../firebase')
 var bcrypt = require('bcrypt');
+const { use } = require('../controllers/story.controller');
 
 const saltRounds = 11;
 const db = firebase.firestoreDb
@@ -102,6 +103,49 @@ const updateUser = async (req, res) => {
 
 }
 
+const updateUserStory = async (req,res) => {
+  const userId = req.body.userId;
+  const story = req.body.story;
+  try {
+    const userRef = db.collection('users').doc(userId)
+    const user = userRef.get().data()
+    user.stories.forEach((element) => {
+      	if (element.id == story.id) {
+          user.stories.filter(elem => elem.id == story.id);
+          const newStories = user.stories.push(story);
+          userRef.set({
+            stories: newStories
+          }, {merge: true})
+        } else {
+          const newStories = user.stories.push({title: story.title, description: story.description, author: story.author, id: story.id});
+          userRef.set({
+            stories: newStories
+          }, {merge: true});
+        }
+    });
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+    res.send(error)
+  }
+}
+
+const deleteUserStory = async (req,res) => {
+  const storyId = req.params.id;
+  try {
+    const userRef = db.collection('users').doc(userId)
+    const user = userRef.get().data();
+    const newStories = user.stories.filter(id => id !== storyId);
+    userRef.set({
+      stories: newStories
+    }, {merge: true})
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+    res.send(error)
+  }
+}
+
 module.exports = {
   getAll,
   authenticateUser,
@@ -109,4 +153,6 @@ module.exports = {
   postUser,
   deleteUser,
   updateUser,
+  updateUserStory,
+  deleteUserStory,
 }
