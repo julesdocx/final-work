@@ -1,17 +1,42 @@
 <div class="routing-container">
   <div></div>
   <form [formGroup]="storyForm" (ngSubmit)="onSubmit()">
+    <div class="editMetaData content-container" *ngIf="selectedChapter === -1">
+      <div></div>
+      <div class="editMetaDataForm">
+        <label for="title">
+          <caption>Title</caption>
+        </label>
+        <input class="inputField" type="text" name="title" formControlName="title">
+        <label for="description">
+          <caption>Description</caption>
+        </label>
+        <input class="inputField" type="text" name="description" formControlName="description">
+        <label for="author">
+          <caption>Author</caption>
+        </label>
+        <input class="inputField" type="text" name="author" formControlName="author">
+        <button style="float: right" (click)="selectedChapter = 0" class="secondary-button no-select">Close</button>
+      </div>
+      <div></div>
+    </div>
+    <div></div>
     <div formArrayName="chapters" class="routing-container">
       <div></div>
       <div class="routing-container">
-
         <div #upperHeader class="headers-content header-max">
-          <div *ngIf="editMetaData == true" class="header-content-container upper-header primary-color click-header" (click)="selectedChapter = 1; editMetaData = true;">
+          <div *ngIf="selectedChapter !== -1" class="header-content-container upper-header primary-color click-header"
+            (click)="selectedChapter = -1;">
             <div></div>
             <div class="header-container">
-              <h6>Untitled</h6>
+              <div class="header-left-item">
+                <h6>Untitled</h6>
+              </div>
               <div></div>
-              <div class="headerbar-item header-right-item"><div></div><div></div><button class="secondary-button">Edit</button></div>
+              <div class="headerbar-item header-right-item">
+                <div></div>
+                <div></div><button class="secondary-button">Edit</button>
+              </div>
             </div>
             <div></div>
           </div>
@@ -20,7 +45,7 @@
               [class.overflowGrid]="checkOverflow(upperHeader)" (click)="selectedChapter = i; editMetaData = false">
               <div></div>
               <div class="header-container">
-                <div>
+                <div class="header-left-item">
                   <h6>{{chapter.value.name}}</h6>
                 </div>
                 <div>
@@ -35,18 +60,8 @@
         </div>
 
         <div>
-          <div *ngIf="editMetaData == true">
-             <button style="float: right" (click)="editMetaData = false"
-                  class="secondary-button no-select">Close</button>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" formControlName="title">
-            <label for="description">Description </label>
-            <input type="text" id="description" name="description" formControlName="description">
-            <label for="author">Author </label>
-            <input type="text" id="author" name="author" formControlName="author">
-          </div>
-          <div *ngIf="editMetaData == false">
-            <div *ngFor="let chapter of chapters.controls; let i = index" []="i">
+          <div *ngIf="selectedChapter !== -1">
+            <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i">
               <div class="middle-content-container content-container" *ngIf="selectedChapter == i">
                 <div class="side-container-left">
                   <div>
@@ -65,7 +80,6 @@
                   <!-- <button [class.toggled]="preview" style="float: right" (click)="preview = !preview"
                   class="secondary-button no-select">Preview</button>
                 <button (click)="removeChapter(i)">Remove</button> -->
-                  <button type="submit">Submit</button> {{this.storyForm.value | json}}
                 </div>
                 <div></div>
               </div>
@@ -74,10 +88,11 @@
         </div>
         <div class="headers-content header-max">
           <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i">
-            <div class="header-content-container bottom-header click-header" *ngIf="selectedChapter < i" (click)="selectedChapter = i; editMetaData = false">
+            <div class="header-content-container bottom-header click-header" *ngIf="selectedChapter < i"
+              (click)="selectedChapter = i; editMetaData = false">
               <div></div>
               <div class="header-container">
-                <div>
+                <div class="header-left-item">
                   <h6>{{chapter.value.name}}</h6>
                 </div>
                 <div>
@@ -94,8 +109,15 @@
       <div class="header-content-container bottom-header">
         <div></div>
         <div class="header-container">
-          <button (click)="addChapter(); selectedChapter = selectedChapter + 1" class="primary-button">Add
-            chapter</button>
+          <div class="header-left-item">
+            <button (click)="addChapter(); selectedChapter = chapterCount-1" class="primary-button">+ Add
+              chapter</button>
+          </div>
+          <div>
+          </div>
+          <div class="header-right-item">
+            <button class="primary-button-stroked" type="submit">Submit Story</button>
+          </div>
         </div>
         <div></div>
       </div>

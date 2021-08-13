@@ -2,7 +2,6 @@
     padding: 0px 0px 16px 0px;
 }
 
-
 .inline-button-container {
     display: inline;
 }
@@ -13,4 +12,18 @@
 
 .overflowGrid {
     height: 24px;
+}
+
+.editMetaData {
+    position:absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 100%) 450px minmax(0, 100%);
+    align-self: stretch;
+}
+
+.editMetaDataForm {
+    margin: 36px auto 0px 0px;
+    display: flex;
+    flex-direction: column;
 }

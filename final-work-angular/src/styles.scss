@@ -55,8 +55,8 @@ body {
 .header-container {
     display: grid;
     width: 100%;
-    grid-template-columns:  80px 1fr 160px;
-    padding: 8px 0px;
+    grid-template-columns:  160px 1fr 160px;
+    //padding: 8px 0px;
 }
 .headers-content {
     //display: grid;
@@ -143,6 +143,25 @@ body {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 }
 
+.primary-button-stroked {
+    font-size: 14px;
+    font-family: 'neue-haas-grotesk-display', Times, serif;
+    font-weight: 700;
+    background: black;
+    color: white;
+    border: none;
+    padding: 3px 6px;
+    cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    border-radius: 3px;
+}
+.primary-button-stroked:hover {
+    background: white;
+    color: black;
+    //border: black solid 3px;
+    //border-style:;
+}
+
 .primary-button:hover {
     font-family: 'neue-haas-grotesk-display', Times, serif;
     text-decoration: underline;
@@ -176,7 +195,7 @@ body {
     //font-weight: 100;
 }
 
-.secondary-button-container {
+.button-container {
     display: grid;
     place-items: center;
 }

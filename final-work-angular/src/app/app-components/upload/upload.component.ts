@@ -29,13 +29,12 @@ export class UploadComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.storyForm = this.formBuilder.group({
-      title: ['Untitled', Validators.required],
-      description: [''],
-      author: [''],
+      title: ['Untitled'],
+      description: ['e'],
+      author: ['e'],
       chapters: this.formBuilder.array([]),
     });
     this.addChapter();
-    console.log('constructor')
   }
 
   ngOnInit() {}
@@ -70,12 +69,10 @@ export class UploadComponent implements OnInit {
     this.chapters.removeAt(i);
   }
 
-  onSubmit() {
-    console.log(this.storyForm.controls);
+  onSubmit() { 3
   }
 
   checkOverflow (element: any) {
-
     if (element.offsetHeight < element.scrollHeight ||
         element.offsetWidth < element.scrollWidth) {
           console.log(true);
@@ -87,14 +84,14 @@ export class UploadComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log(this.selectedChapter, this.chapterCount);
+    console.log(event);
 
     if (event.keyCode === KEY_CODE.RIGHT_ARROW || event.keyCode === KEY_CODE.UP_ARROW) {
-      this.selectedChapter == this.chapterCount? this.selectedChapter += 1: null
+      this.selectedChapter === this.chapterCount-1? this.selectedChapter += 1: null
     }
 
     if (event.keyCode === KEY_CODE.LEFT_ARROW || event.keyCode === KEY_CODE.DOWN_ARROW) {
-      this.selectedChapter == 0? this.selectedChapter -= 1: null
+      this.selectedChapter === -1? this.selectedChapter -= 1: null
     }
   }
 }
