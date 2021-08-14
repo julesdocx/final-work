@@ -2,22 +2,23 @@
     <div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <h3>Sign up</h3>
-            <label for="firstname-input"><caption>Firstname</caption></label>
-            <input formControlName="firstname" type="text" placeholder="firstname" name="firstname-input">
-            <label for="lastname-input"><caption>Lastname</caption></label>
-            <input formControlName="lastname" type="text" placeholder="lastname" name="lastname-input">
+            <label for="firstname-input"><caption>Username</caption></label>
+            <input  [class.validationError]="!nameInputValidator" (keyup)="checkInputValidation(f.firstname.value, 'oke', 'oke') ? nameInputValidator = true : nameInputValidator = false" formControlName="firstname" type="text" placeholder="username" name="firstname-input">
             <label for="username-input"><caption>Email</caption></label>
-            <input formControlName="email" type="email" placeholder="example@mail.com" name="username-input">
+            <input [class.validationError]="!emailInputValidator" (keyup)="checkInputValidation(f.email.value, 'oke', 'oke') ? emailInputValidator = true : emailInputValidator = false" formControlName="email" type="text" placeholder="example@mail.com" name="username-input">
             <label for="password-input"><caption>Password</caption></label>
-            <input formControlName="password" type="password" placeholder="********" name="password-input">
+            <input [class.validationGoodness]="password1InputValidator" [class.validationError]="!password1InputValidator" (keyup)="checkPasswordValidation(f.password.value, f.password.value) ? password2InputValidator = true : password2InputValidator = false" formControlName="password" type="password" placeholder="********" name="password-input">
             <label  for="repeat-password-input"><caption style="width: 120px;  text-align: left">Repeat password</caption></label>
-            <input formControlName="repeatPassword" type="password" placeholder="********" name="repeat-password-input">
+            <input [class.validationGoodness]="password2InputValidator" [class.validationError]="!password2InputValidator" (keyup)="checkPasswordValidation(f.password.value, f.repeatPassword.value) ? password2InputValidator = true : password2InputValidator = false" formControlName="repeatPassword" type="password" placeholder="********" name="repeat-password-input">
             <div>
                 <button style="float: right;" class="primary-button-stroked" type="submit">Submit</button>
             </div>
             <div class="button-container">
                 <button class="secondary-button" [routerLink]="['/log-in']" routerLinkActive="router-link-active" >Already have an account?</button>
             </div>
+            <p *ngIf="error" class="error">
+                {{ error }}
+              </p>
         </form>
     </div>
 </div>

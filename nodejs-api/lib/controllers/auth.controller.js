@@ -17,7 +17,7 @@ router.post('/login', function (req, res, next) {
       if (err) {
         res.send(err);
       }
-      const jwtPayload = { id: userObj.id, email: userObj.user.email }
+      const jwtPayload = { id: userObj.id, username: userObj.user.username }
       const token = jwt.sign(jwtPayload, process.env.JWT_SECRET);
       return res.json({ token });
     });

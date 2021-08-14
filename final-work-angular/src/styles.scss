@@ -3,6 +3,7 @@
     display: none;
 }
 
+@import './global_styling/vertical-layout.scss';
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
 
@@ -55,7 +56,7 @@ body {
 .header-container {
     display: grid;
     width: 100%;
-    grid-template-columns:  160px 1fr 160px;
+    grid-template-columns:  auto 1fr 160px;
     //padding: 8px 0px;
 }
 .headers-content {
@@ -269,6 +270,7 @@ small {
     font-weight: 200;
 }
 caption {
+    display: inline;
     font-size: 10px;
     font-weight: 100;
     font-style: italic;
@@ -298,9 +300,31 @@ input {
     margin-right: 8px;
 }
 
+.validationError {
+    border: red solid 1px !important;
+}
+
+.error {
+    margin-top: 12px;
+    padding: 12px;
+    color: red;
+    border-radius: 4px;
+    border: red solid 1px;
+    text-align: center;
+}
+
+.validationGoodness {
+    border: green solid 1px !important;
+}
+
 textarea {
     font-family: 'PT Serif', serif;
     font-size: 12px;
+}
+
+.inputField {
+    border-radius: 1px;
+    border: black solid 1px;
 }
 
 .inputField::-webkit-input-placeholder {

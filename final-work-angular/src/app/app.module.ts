@@ -24,7 +24,7 @@ import { TextEditorModule } from './ui-components/text-editor/text-editor.module
     ProfileComponent,
     UploadComponent,
     StoryComponent,
-    HomeComponent,
+  HomeComponent,
     ClickOutDirective,
   ],
   imports: [

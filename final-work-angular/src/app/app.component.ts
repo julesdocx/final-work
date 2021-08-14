@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -12,10 +14,20 @@ export class AppComponent {
   isLoggedIn = false;
   menuToggle = false;
   loginPageRequest = false;
+  notHome: boolean = false;
+  currentUser: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor (private authService : AuthService, private router: Router) {
-    this.isLoggedIn = this.authService.isAuthenticated$
+  constructor (private authService : AuthService, private router: Router, private location: Location) {
+    this.isLoggedIn = this.authService.isAuthenticated$;
     console.log(this.isLoggedIn)
+    this.currentUser = authService.currentUserSubject;
+    this.router.events.subscribe(() => {
+      if (this.location.path() != "") {
+        this.notHome = true;
+      } else {
+        this.notHome = false;
+      }
+    });
   }
 
   loginFormUpdate(state: boolean) {

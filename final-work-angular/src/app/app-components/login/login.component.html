@@ -2,9 +2,9 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h3>Log in</h3>
         <label for="username-input"><caption>Email</caption></label>
-        <input class="inputField" formControlName="username" type="email" placeholder="example@mail.com" name="username-input">
+        <input [class.validationError]="!nameInputValidator" (keyup)="checkInputValidation(f.username.value, 'oke') ? nameInputValidator = true : nameInputValidator = false" class="inputField"  formControlName="username" type="email" placeholder="example@mail.com" name="username-input">
         <label for="password-input"><caption>Password</caption></label>
-        <input class="inputField" formControlName="password" type="text" placeholder="*******" name="username-input">
+        <input [class.validationError]="!passwordInputValidator" (keyup)="checkInputValidation(f.password.value, 'oke') ? passwordInputValidator = true : passwordInputValidator = false"  class="inputField" formControlName="password" type="password" placeholder="*******" name="username-input">
         <div>
             <button style="float: right;" class="primary-button-stroked" type="submit">Log in</button>
         </div>
@@ -12,5 +12,8 @@
         <div class="button-container">
             <button  class="secondary-button" [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >Not Registered yet?</button>
         </div>
+        <p *ngIf="error" class="error">
+            {{ error }}
+          </p>
     </form>
 </div>

@@ -48,7 +48,7 @@ const getUserById = async (id) => {
     const userDocument = db.collection('users').doc(id);
     const doc = await userDocument.get();
     const user = doc.data();
-    return {firstname: user.firstname, lastname: user.lastname, email: user.email, storyReferences: user.storyReferences}
+    return {username: user.username, email: user.email, storyReferences: user.storyReferences}
   } catch (err) {
     console.log(err);
     return null
@@ -79,8 +79,7 @@ const postUser = async (req, res) => {
       res.status(403).send(`user with email ${user.email}, already exists`)
     } else {
       userDocumentRef.add({
-        firstname: user.firstname,
-        lastname: user.lastname,
+        username: user.username,
         email: user.email,
         password: cryptedPassword,
       }, { merge: true });

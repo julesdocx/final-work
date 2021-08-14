@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'seelisVanderAuweraert', component: ProfileComponent, canActivate : [AuthGuard], pathMatch: 'full'},
   { path: 'log-in', component : LoginComponent },
   { path: 'readable/:id', component : StoryComponent },
+  { path: 'profile/:id', component : ProfileComponent },
   { path: 'strepen', component : StoryComponent },
   { path: 'upload', component : UploadComponent },
   { path: 'sign-up', component : RegistrationComponent},

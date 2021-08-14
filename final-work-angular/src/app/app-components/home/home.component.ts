@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     //   val.subscribe((data: any) => {
     //     this.stories = data
     //   });
-    // })
+    // });
     this.stories = [{id: 'fzjuR4C5lbqCqe1ecFZ9', title: 'Titled', author:'authorized'}]
   }
 

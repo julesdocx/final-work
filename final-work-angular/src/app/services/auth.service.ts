@@ -13,6 +13,7 @@ export class AuthService {
   private accessToken;
   public isAuthenticated$: boolean;
   public userId : string = '';
+  public currentUserSubject: BehaviorSubject<{token: string, id: string, username: string}>;
 
   constructor(private router: Router, private http: HttpClient) {
     const localStorageData: any = localStorage.getItem('currentUser')
@@ -20,11 +21,13 @@ export class AuthService {
       const data = JSON.parse(localStorageData)
       this.userId = data.id;
       console.log(data)
+      this.currentUserSubject = new BehaviorSubject<{token: string, id: string, username: string}>({token: data.token, id:data.id, username: data.username});
       this.isAuthenticated$ = true;
       this.accessToken = data.token;
     } else {
       this.isAuthenticated$ = false;
       this.accessToken = null
+      this.currentUserSubject = new BehaviorSubject<{token: string, id: string, username: string}>({token: '', id: '', username: ''});
     } 
   }
 
@@ -39,7 +42,7 @@ export class AuthService {
             const newdecodedToken: any = jwt_decode(res.token);
             this.isAuthenticated$ = true;
             this.userId = newdecodedToken.id;
-            localStorage.setItem('currentUser', JSON.stringify({token: res.token, id: newdecodedToken.id}));
+            localStorage.setItem('currentUser', JSON.stringify({token: res.token, id: newdecodedToken.id, username: newdecodedToken.username}));
             // this.currentUserSubject.next({token: res.token, email: newdecodedToken.email});
             this.accessToken = res.token;
             return res;

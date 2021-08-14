@@ -11,6 +11,7 @@ export class StoryComponent implements OnInit {
   chapters: boolean[] = [false, false, false, false, false]
   storyId: string;
   story: any;
+  selectedChapter: number = 0;
 
   constructor(private route: ActivatedRoute, private storiesServie: StoriesService) {
     this.storyId = this.route.snapshot.paramMap.get('id') || '';

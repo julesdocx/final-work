@@ -12,6 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   form : FormGroup;
   error = "";
+  nameInputValidator: boolean = true;
+  passwordInputValidator: boolean = true;
+
 
   @Output() outputValue = new EventEmitter<boolean>();
 
@@ -38,10 +41,21 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  onSubmit(){
+  checkInputValidation(input1: string, input2:string) {
+    if(input1.length > 0 && input2.length >0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  onSubmit(){
+    if(this.checkInputValidation(this.f.password.value, this.f.username.value) == false){
+      return;
+    }
     if (this.form.invalid) {
-        return;
+      this.error = 'invalid input fields';
+      return;
     }
     this.authService
         .login(this.f.username.value, this.f.password.value)

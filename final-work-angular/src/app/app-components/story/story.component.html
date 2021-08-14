@@ -24,6 +24,62 @@
 </div> -->
 
 <div class="routing-container">
-    <div></div>
-    <div class="header-content-conatainer">{{story | json}}</div>
+  <div class="header-content">
+    <div *ngFor="let chapter of story.chapters; let i = index">
+      <div class="header-content-container upper-header click-header" *ngIf="selectedChapter > i"
+           (click)="selectedChapter = i;">
+        <div></div>
+        <div class="header-container">
+          <div class="header-left-item">
+            <h6>{{chapter.name}}</h6>
+          </div>
+          <div>
+          </div>
+          <div class="headerbar-item header-right-item">
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedChapter !== -1">
+    <div *ngFor="let chapter of story.chapters; let i = index">
+      <div class="middle-content-container content-container" *ngIf="selectedChapter == i">
+        <div class="side-container-left">
+          <div>
+            {{story.title}}
+            <!-- <label class="secondary-button-label no-select" for="story-title-input">Edit</label> -->
+          </div>
+        </div>
+        <div>
+            <h5 style="margin-top: 16px;">{{chapter.name}}</h5>
+          <div [innerHTML]="chapter.text">
+          </div>
+          <!-- <button [class.toggled]="preview" style="float: right" (click)="preview = !preview"
+          class="secondary-button no-select">Preview</button>
+        <button (click)="removeChapter(i)">Remove</button> -->
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div class="headers-content header-max">
+    <div *ngFor="let chapter of story.chapters; let i = index">
+      <div class="header-content-container bottom-header click-header" *ngIf="selectedChapter < i"
+        (click)="selectedChapter = i;">
+        <div></div>
+        <div class="header-container">
+          <div class="header-left-item">
+            <h6>{{chapter.name}}</h6>
+          </div>
+          <div>
+          </div>
+          <div class="headerbar-item header-right-item">
+            <!-- <button class="secondary-button">Edit</button> -->
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 </div>
