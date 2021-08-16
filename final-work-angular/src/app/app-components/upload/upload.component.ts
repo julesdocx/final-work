@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import { QuillConfiguration } from "./quill-configuration";
 import Quill from 'quill';
 import { StoriesService } from 'src/app/services/stories.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const font = Quill.import('formats/font')
 
@@ -21,22 +22,47 @@ export enum KEY_CODE {
   styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent implements OnInit {
+  story: any;
   storyForm: FormGroup;
   selectedChapter: number = 0;
   quillConfiguration = QuillConfiguration;
   preview: boolean = false;
   editMetaData: boolean = false;
   chapterCount: number = 0;
-  updateMode: boolean = false
+  updateMode: boolean = false;
+  id: string = '';
+  submit: string = 'Submit';
 
-  constructor(private formBuilder: FormBuilder, private storiesService: StoriesService) {
+  constructor(private formBuilder: FormBuilder, private storiesService: StoriesService, private router: Router, private route: ActivatedRoute) {
+    this.id = route.snapshot.paramMap.get('id') ?? ''
     this.storyForm = this.formBuilder.group({
       title: ['Untitled'],
-      description: ['e'],
-      author: ['e'],
+      description: [''],
+      author: [''],
       chapters: this.formBuilder.array([]),
     });
-    this.addChapter();
+
+    if (this.id.length > 0) {
+      this.submit = 'Update'
+      this.storiesService.getStoryById(this.id).then((val)=> {
+        val.subscribe((data: any) => {
+          this.story = data;
+          this.storyForm.patchValue({
+            title: this.story.title,
+            lastName: this.story.description,
+            email: this.story.author,
+          });
+          this.story.chapters.forEach((element: any) => {
+            this.chapters.push(this.formBuilder.group({
+              name: [element.name],
+              text: [element.text],
+            }));
+          });
+        });
+      });
+    } else {
+      this.addChapter();
+    }
   }
 
   ngOnInit() {}
@@ -72,19 +98,23 @@ export class UploadComponent implements OnInit {
   }
 
   onSubmit() { 
-    // if(updateMode = true) {
-  
-    // }
-    console.log(this.storyForm.value.title,
-       this.storyForm.value.description,
-       this.storyForm.value.author,
-       this.chapters.value,)
-    this.storiesService.postStory({
-      title: this.storyForm.value.title,
-      description: this.storyForm.value.description,
-      author: this.storyForm.value.author,
-      chapters: this.chapters.value,
-    })
+    if (this.id.length > 0) {
+      this.storiesService.updateStory({
+        title: this.storyForm.value.title,
+        description: this.storyForm.value.description,
+        author: this.storyForm.value.author,
+        chapters: this.chapters.value,
+        id: this.id
+      });
+    } else {
+     this.storiesService.postStory({
+       title: this.storyForm.value.title,
+       description: this.storyForm.value.description,
+       author: this.storyForm.value.author,
+       chapters: this.chapters.value,
+     });
+    }
+    this.router.navigate(['/home'])
   }
 
   checkOverflow (element: any) {

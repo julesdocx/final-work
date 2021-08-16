@@ -1,16 +1,32 @@
 <div>
-    <div>
-        <div>
-            <!-- <h3>{{user.value.firstname}} {{user.value.lastname}}</h3> -->
-            <h3>seelis Van der Auweraert</h3>
-            <!-- <p>Email: {{user.value.email}}</p> -->
-            <!-- <h4 *ngIf="storyList.length > 0">My library:</h4>
+  <div class="routing-container">
+    <div></div>
+    <div class="headers-content">
+      <div *ngFor="let story of storyList">
+        <div (click)="goToStory(story.id)" class="header-content-container upper-header primary-color click-header">
+          <div></div>
+          <div class="header-container">
+            <div class="header-left-item">
+              <h6>{{story.title}}</h6>
+            </div>
+            <div>
+            </div>
+            <div class="headerbar-item header-right-item">
+              <button (click)="removeStory(story.id)" class="secondary-button">Remove</button>
+              <button (click)="navigateToUpload(story.id)" class="secondary-button">Edit</button>
+            </div>
+          </div>
+          <div></div>
         </div>
-        <div *ngFor="let story of storyList">
-            <h1>{{story.title}}</h1>
-            <p>{{story.author}}</p>
-                <h3>Chapters: {{story.chapterTitles.length}}</h3>
-        </div> -->
-        <button [routerLink]="['/strepen']" routerLinkActive="router-link-active"  class="secondary-button">Strepen</button>
+      </div>
     </div>
-</div>
+    <div class="middle-content-container content-container">
+      <div></div>
+      <div>
+        <h3>{{ (user | async ).username}}</h3>
+        <button (click)="logout()" class="secondary-button">Logout</button>
+        <!-- <button (click)="deleteAccount()" class="secondary-button">Delete Account</button> -->
+      </div>
+      <div></div>
+    </div>
+  </div>

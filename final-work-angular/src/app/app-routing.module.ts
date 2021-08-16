@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'readable/:id', component : StoryComponent },
   { path: 'profile/:id', component : ProfileComponent },
   { path: 'strepen', component : StoryComponent },
+  { path: 'upload/:id', component : UploadComponent },
   { path: 'upload', component : UploadComponent },
   { path: 'sign-up', component : RegistrationComponent},
   // otherwise redirect to home

@@ -2,19 +2,19 @@
         <div class="header-content-container top-header" style="position: sticky;">
             <div>
             </div>
-            <div class="header-container">
-                <div class="headerbar-item header-left-item">
-                    <button class="primary-button" [routerLink]="['/']">De<span style="font-family: PT Serif; font-style: italic; font-weight: 400;">Paulus1</span>Dienst <span *ngIf="notHome">← back</span></button>
-                    <!-- <button *ngIf="!menuToggle" (click)="menuToggle = !menuToggle" class="secondary-button">Index</button> -->
+                <div class="header-container">
+                    <div class="headerbar-item header-left-item">
+                        <button class="primary-button" [routerLink]="['/']">De<span style="font-family: PT Serif; font-style: italic; font-weight: 400;">Paulus1</span>Dienst <span *ngIf="notHome">← back</span></button>
+                        <!-- <button *ngIf="!menuToggle" (click)="menuToggle = !menuToggle" class="secondary-button">Index</button> -->
+                    </div>
+                    <div class="headerbar-item header-center-item">
+                    </div>
+                    <div class="headerbar-item header-right-item">
+                        <button *ngIf="isLoggedIn" [routerLink]="['/profile', (currentUser | async).id]" class="secondary-button">{{ (currentUser | async ).username}}</button>
+                        <button *ngIf="!isLoggedIn" [routerLink]="['/log-in']" class="primary-button">Log in</button>
+                        <button *ngIf="!isLoggedIn" [routerLink]="['/sign-up']" class="secondary-button">Sign up</button>
+                    </div>
                 </div>
-                <div class="headerbar-item header-center-item">
-                </div>
-                <div class="headerbar-item header-right-item">
-                    <button *ngIf="isLoggedIn" [routerLink]="['/profile', (currentUser | async).id]" class="secondary-button">{{ (currentUser | async ).username}}</button>
-                    <button *ngIf="!isLoggedIn" [routerLink]="['/log-in']" class="primary-button">Log in</button>
-                    <button *ngIf="!isLoggedIn" [routerLink]="['/sign-up']" class="secondary-button">Sign up</button>
-                </div>
-            </div>
             <div>
             </div>
         </div>

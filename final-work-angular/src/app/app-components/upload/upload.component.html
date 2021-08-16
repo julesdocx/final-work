@@ -51,14 +51,13 @@
                 <div>
                 </div>
                 <div class="headerbar-item header-right-item">
-                  <!-- <button class="secondary-button">Edit</button> -->
+                  <button (click)="removeChapter(i)" class="secondary-button">Remove</button>
                 </div>
               </div>
               <div></div>
             </div>
           </div>
         </div>
-
         <div>
           <div *ngIf="selectedChapter !== -1">
             <div *ngFor="let chapter of chapters.controls; let i = index" [formGroupName]="i">
@@ -98,7 +97,7 @@
                 <div>
                 </div>
                 <div class="headerbar-item header-right-item">
-                  <!-- <button class="secondary-button">Edit</button> -->
+                  <button (click)="removeChapter(i)" class="secondary-button">Remove</button>
                 </div>
               </div>
               <div></div>
@@ -110,13 +109,13 @@
         <div></div>
         <div class="header-container">
           <div class="header-left-item">
-            <button (click)="addChapter(); selectedChapter = chapterCount-1" class="primary-button">+ Add
+            <button type="button" (click)="addChapter(); selectedChapter = chapterCount-1" class="primary-button">+ Add
               chapter</button>
           </div>
           <div>
           </div>
           <div class="header-right-item">
-            <button class="primary-button-stroked" type="submit">Submit Story</button>
+            <button class="primary-button-stroked" type="submit">{{submit}} Story</button>
           </div>
         </div>
         <div></div>

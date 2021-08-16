@@ -55,8 +55,3 @@ server.listen(process.env.PORT, () => console.log(`API is running on localhost: 
 server.on('error', (error) => {
   console.log('httpServer error', error);
 });
-
-const admin = require('firebase-admin');
-
-var bcrypt = require('bcrypt');
-const saltRounds = 10;

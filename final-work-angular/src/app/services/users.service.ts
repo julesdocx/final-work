@@ -28,18 +28,25 @@ export class UsersService {
     return this.http.get(`${environment.apiUrl}/api/users/user/${id}`);
   }
 
-  async updateUserStory(story: any) {
+  updateUserStory(story: any) {
     const userId = this.authService.userId;
     try {
-      this.http.post(`${environment.apiUrl}/api/users/updatestory`, {userId: userId, story: story});
+      this.http.post(`${environment.apiUrl}/api/users/updatestory`, {userId: userId, story: story}).pipe(first())
+      .subscribe(
+          data => {
+            console.log('gelukt')
+          },
+          error => {
+              console.log('user update error', error);
+          });
     } catch (error) {
-      console.log(error);
+      console.log(error, 'update story');
     }
   }
 
-  async deleteUserStory (id: string) {
+  deleteUserStory (userId: string, storyId: string) {
     	try {
-        this.http.delete(`${environment.apiUrl}/api/users/deletestory/${id}`);
+        this.http.delete(`${environment.apiUrl}/api/users/deletestory/?userId=${userId}?storyId=${storyId}`);
       } catch (error) {
         console.log(error)
       }

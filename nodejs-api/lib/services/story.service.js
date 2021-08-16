@@ -6,8 +6,8 @@ const getStoriesByIds = async (storyIds) => {
     let storyObjArray = [];
     try {
         for (const id of storyIds) {
-            const story = await getStoryById(id);
-            storyObjArray.push(story)
+            const storyDocument = await db.collection('stories').doc(id).get();
+            storyObjArray.push(storyDocument.data())
         };
         return storyObjArray
     } catch (err) {
@@ -68,9 +68,10 @@ const updateStory = async (req, res) => {
         const {id} = await db.collection('stories').doc(story.id).set({
             title: story.title,
             description: story.description,
-            author: story.description,
-            chapters: story.chapters
-        }, { merge: true })
+            author: story.author,
+            chapters: story.chapters,
+            id: story.id
+        });
         res.status(200).send(id)
     } catch (error) {
         console.log(error);
@@ -87,7 +88,7 @@ const deleteStory = async (req, res) => {
         console.log(error);
         res.send(error);
     }
-}
+}   
 
   module.exports = {
     getStoriesByIds,

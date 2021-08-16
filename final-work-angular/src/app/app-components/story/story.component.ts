@@ -18,10 +18,11 @@ export class StoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.storyId);
-    let localObject = localStorage.getItem(this.storyId) ?? '';
-    console.log(localObject);
-    localObject == '' ? this.getStory() : this.story = JSON.parse(localObject);
+    // console.log(this.storyId);
+    // let localObject = localStorage.getItem(this.storyId) ?? '';
+    // console.log(localObject);
+    // localObject == '' ? this.getStory() : this.story = JSON.parse(localObject);
+    this.getStory();
   }
 
   showChapter(id: number) {

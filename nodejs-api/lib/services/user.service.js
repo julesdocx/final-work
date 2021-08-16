@@ -48,7 +48,7 @@ const getUserById = async (id) => {
     const userDocument = db.collection('users').doc(id);
     const doc = await userDocument.get();
     const user = doc.data();
-    return {username: user.username, email: user.email, storyReferences: user.storyReferences}
+    return {username: user.username, email: user.email, stories: user.stories}
   } catch (err) {
     console.log(err);
     return null
@@ -82,6 +82,7 @@ const postUser = async (req, res) => {
         username: user.username,
         email: user.email,
         password: cryptedPassword,
+        stories: [],
       }, { merge: true });
       res.status(200).send('successful registration');
     }
@@ -102,26 +103,34 @@ const updateUser = async (req, res) => {
 
 }
 
-const updateUserStory = async (req,res) => {
+const updateUserStory = async (req, res) => {
   const userId = req.body.userId;
   const story = req.body.story;
   try {
     const userRef = db.collection('users').doc(userId)
-    const user = userRef.get().data()
-    user.stories.forEach((element) => {
-      	if (element.id == story.id) {
-          user.stories.filter(elem => elem.id == story.id);
-          const newStories = user.stories.push(story);
+    const userDoc = await userRef.get()
+    let user = await userDoc.data()
+    if (user.stories) {
+      user.stories.forEach((element) => {
+        if (element.id == story.id) {
+          console.log(user.stories.filter(elem => elem.id !== story.id), 'Em Got?');
+          const newStories = [...user.stories.filter(elem => elem.id !== story.id),{title: story.title, description: story.description, author: story.author, id: story.id}];
           userRef.set({
             stories: newStories
-          }, {merge: true})
+          }, {merge: true});
         } else {
-          const newStories = user.stories.push({title: story.title, description: story.description, author: story.author, id: story.id});
+          const newStories = [...user.stories,{title: story.title, description: story.description, author: story.author, id: story.id}];
+          console.log('watchout')
           userRef.set({
             stories: newStories
           }, {merge: true});
         }
-    });
+      });
+    } else {
+      userRef.set({
+        stories: [story]
+      }, {merge: true});
+    }
     res.status(200);
   } catch (error) {
     console.log(error);
@@ -130,10 +139,13 @@ const updateUserStory = async (req,res) => {
 }
 
 const deleteUserStory = async (req,res) => {
-  const storyId = req.params.id;
+  const userId = req.query.userId;
+  const storyId = req.query.storyId;
+
   try {
     const userRef = db.collection('users').doc(userId)
-    const user = userRef.get().data();
+    const userDoc = userRef.get()
+    const user = userDoc.data();
     const newStories = user.stories.filter(id => id !== storyId);
     userRef.set({
       stories: newStories

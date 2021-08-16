@@ -23,12 +23,13 @@ export class StoriesService {
     return this.http.get(`${environment.apiUrl}/api/stories/list/${idString}`);
   }
 
-  async postStory(story: any) {
+  postStory(story: any) {
     try {
-      this.http.post(`${environment.apiUrl}/api/stories/upload`, {story: story}).pipe(first())
+      console.log(story);
+      this.http.post(`${environment.apiUrl}/api/stories/upload`, {story:story}, {responseType: 'text'})
       .subscribe(
           data => {
-            console.log(data);
+            console.log(data, 'storyId uplad');
             story.id = data;
             this.usersService.updateUserStory(story);
           },
@@ -40,19 +41,20 @@ export class StoriesService {
     }
   }
 
-  async updateStory(story: any) {
+  updateStory(story: any) {
     try {
-      this.http.post(`${environment.apiUrl}/api/stories/update`, {story: story});
-      this.usersService.updateUserStory(story);
+      this.http.post(`${environment.apiUrl}/api/stories/update`, {story: story}).subscribe(() => {
+        this.usersService.updateUserStory(story);
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async deleteStory(id: string) {
+  deleteStory(userId: string, storyId: string) {
     try {
-      this.http.delete(`${environment.apiUrl}/api/stories/delete/${id}`);
-      this.usersService.deleteUserStory(id);
+      this.usersService.deleteUserStory(userId, storyId);
+      this.http.delete(`${environment.apiUrl}/api/stories/delete/${storyId}`);
     } catch (error) {
       console.log(error);
     }
