@@ -1,0 +1,10 @@
+Authentication (Passportjs + JWT)
+http://www.passportjs.org/
+https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
+
+DataBase & api (Google Cloud Firestore + Nodejs v12.16.1+ Expressjs)
+https://cloud.google.com/firestore/docs/query-data/get-data
+https://expressjs.com/
+
+Frontend Framework (Angular CLI: v9.1.5)
+https://v9.angular.io/docs

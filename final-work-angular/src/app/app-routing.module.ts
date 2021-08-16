@@ -11,13 +11,11 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home',  component: HomeComponent, redirectTo: '', pathMatch: 'full' },
-  { path: 'seelisVanderAuweraert', component: ProfileComponent, canActivate : [AuthGuard], pathMatch: 'full'},
   { path: 'log-in', component : LoginComponent },
   { path: 'readable/:id', component : StoryComponent },
-  { path: 'profile/:id', component : ProfileComponent },
-  { path: 'strepen', component : StoryComponent },
-  { path: 'upload/:id', component : UploadComponent },
-  { path: 'upload', component : UploadComponent },
+  { path: 'profile/:id', canActivate : [AuthGuard], component : ProfileComponent },
+  { path: 'upload/:id', canActivate : [AuthGuard],component : UploadComponent },
+  { path: 'upload', canActivate : [AuthGuard],component : UploadComponent },
   { path: 'sign-up', component : RegistrationComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
